@@ -15,5 +15,35 @@ public class KitchenStorage {
 	private Long id;
 	
 	private int filteredWater; // Requires water
+	
+	
+
+	public KitchenStorage(int filteredWater) {
+		super();
+		this.filteredWater = filteredWater;
+	}
+
+	public KitchenStorage() {
+		super();
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public int getFilteredWater() {
+		return filteredWater;
+	}
+
+	public void setFilteredWater(int filteredWater) {
+		this.filteredWater = filteredWater;
+	}
+	
+	
+	
 
 }

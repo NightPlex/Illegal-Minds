@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /*
@@ -25,9 +26,11 @@ public class Barkeeping {
 	
 	// Primary values::
 	
-	private int drinks; // amount of drinks available for sale.
+	private int drinks; // amount of drinks available for sale. DONT NEED
 	
 	private int barkeepingLevel; // Skill level
+	
+	private int barkeepingExp; // exp
 	
 	private int reputation;  // Your bar's reputation, of which popularity depends.
 	
@@ -68,6 +71,24 @@ public class Barkeeping {
 
 	public void setDrinks(int drinks) {
 		this.drinks = drinks;
+	}
+	
+	
+
+	public int getBarkeepingExp() {
+		return barkeepingExp;
+	}
+
+	public void setBarkeepingExp(int barkeepingExp) {
+		this.barkeepingExp = barkeepingExp;
+	}
+
+	public KitchenStorage getKitchenStorage() {
+		return kitchenStorage;
+	}
+
+	public void setKitchenStorage(KitchenStorage kitchenStorage) {
+		this.kitchenStorage = kitchenStorage;
 	}
 
 	public int getBarkeepingLevel() {
@@ -118,8 +139,8 @@ public class Barkeeping {
 		this.barStorage = barStorage;
 	}
 
-	public Barkeeping(int drinks, int barkeepingLevel, int reputation, boolean hasBoughtBar, boolean barIsClosed,
-			int storageCapacity, BarStorage barStorage) {
+	public Barkeeping(int barkeepingLevel, int barkeepingExp ,int reputation, boolean hasBoughtBar, boolean barIsClosed,
+			int storageCapacity, BarStorage barStorage, KitchenStorage kitchenStorage) {
 		super();
 		this.drinks = drinks;
 		this.barkeepingLevel = barkeepingLevel;
@@ -128,11 +149,22 @@ public class Barkeeping {
 		this.barIsClosed = barIsClosed;
 		this.storageCapacity = storageCapacity;
 		this.barStorage = barStorage;
+		this.kitchenStorage = kitchenStorage;
+		this.barkeepingExp = barkeepingExp;
 	}
 
 	public Barkeeping() {
 		super();
 	}
+
+	@Override
+	public String toString() {
+		return "Barkeeping [id=" + id + ", drinks=" + drinks + ", barkeepingLevel=" + barkeepingLevel + ", reputation="
+				+ reputation + ", hasBoughtBar=" + hasBoughtBar + ", barIsClosed=" + barIsClosed + ", storageCapacity="
+				+ storageCapacity + ", barStorage=" + barStorage + ", kitchenStorage=" + kitchenStorage + "]";
+	}
+	
+	
 	
 	
 	

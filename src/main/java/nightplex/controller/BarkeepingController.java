@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import nightplex.services.barkeeping.BarKeepingService;
 import nightplex.services.repository.AccountRepository;
 import nightplex.services.repository.UserRepository;
 
@@ -16,11 +17,18 @@ public class BarkeepingController {
 	@Autowired
 	private AccountRepository repo;
 	
+	@Autowired
+	private BarKeepingService bar;
+	
 	
 	@RequestMapping(value = "/game/tavern")
 	public String barkeepingTavern(Model model) {
 		
-		model.addAttribute("test", repo.getById(1L));
+		model.addAttribute("userAccount", repo.getById(1L));
+		
+		System.out.println(bar.buyBar());
+		
+		
 		
 		
 		

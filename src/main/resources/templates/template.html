@@ -1,3 +1,4 @@
+<!-- Template for in game design -->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
@@ -38,7 +39,7 @@
 
 </head>
 <body>
-
+	<!-- Header part of the website -->
 	<div id="header" th:fragment="site-header">
 		<div class="color-line"></div>
 		<div id="logo" class="light-version">
@@ -137,7 +138,7 @@
 							<i class="pe-7s-upload pe-7s-news-paper"></i>
 					</a></li>
 					<li class="dropdown">
-						
+
 
 						<form method="post" th:action="@{/logout}" th:remove="tag">
 							<a href="#" onclick="document.forms[0].submit();return false;"><i
@@ -178,7 +179,7 @@
 
 					<div>
 						<h4 class="font-extra-bold m-b-xs">
-							<p th:text="${'&#36;' + test.userData.money}">$260 104,200</p>
+							<p th:text="${'&#36;' + userAccount.userData.money}">$260 104,200</p>
 							<!--this has the money also-->
 						</h4>
 					</div>
@@ -192,7 +193,7 @@
 				<li><p>
 						<span class="nav-label">Fame: </span><span
 							class="label label-warning pull-right user-data-numbers"
-							th:text="${test.userData.fame}">NEW</span>
+							th:text="${userAccount.userData.fame}">NEW</span>
 					</p></li>
 				<li><p>
 						<span class="nav-label"></span>
@@ -200,22 +201,22 @@
 				<li><p>
 						<span class="nav-label">Barkeeping: </span><span
 							class="label label-warning pull-right user-data-numbers"
-							th:text="${test.userData.fame}">NEW</span>
+							th:text="${userAccount.userData.fame}">NEW</span>
 					</p></li>
 				<li><p>
 						<span class="nav-label">Mining: </span><span
 							class="label label-warning pull-right user-data-numbers"
-							th:text="${test.userData.fame}">NEW</span>
+							th:text="${userAccount.userData.fame}">NEW</span>
 					</p></li>
 				<li><p>
 						<span class="nav-label">Cooking: </span><span
 							class="label label-warning pull-right user-data-numbers"
-							th:text="${test.userData.fame}">NEW</span>
+							th:text="${userAccount.userData.fame}">NEW</span>
 					</p></li>
 				<li><p>
 						<span class="nav-label">Endurance: </span><span
 							class="label label-warning pull-right user-data-numbers"
-							th:text="${test.userData.fame}">NEW</span>
+							th:text="${userAccount.userData.fame}">NEW</span>
 					</p></li>
 				<li><p>
 						<span class="nav-label"></span>
@@ -223,23 +224,23 @@
 				<li><p>
 						<span class="nav-label">Money: </span><span
 							class="label label-warning pull-right user-data-numbers"
-							padding="20px" th:text="${'&#36;' + test.userData.money}">NEW</span>
+							padding="20px" th:text="${'&#36;' + userAccount.userData.money}">NEW</span>
 					</p></li>
 				<li><p>
 						<span class="nav-label">In bank: </span><span
 							class="label label-warning pull-right user-data-numbers"
-							th:text="${'&#36;' + test.userData.moneyInBank}">NEW</span>
+							th:text="${'&#36;' + userAccount.userData.moneyInBank}">NEW</span>
 					</p></li>
 				<li><p>
 						<span class="nav-label">Chips: </span><span
 							class="label label-warning pull-right user-data-numbers"
-							th:text="${test.userData.fame}">NEW</span>
+							th:text="${userAccount.userData.fame}">NEW</span>
 					</p></li>
 
 				<li><p>
 						<span class="nav-label">Credits: </span><span
 							class="label label-warning pull-right user-data-numbers"
-							th:text="${test.userData.fame}">NEW</span>
+							th:text="${userAccount.userData.fame}">NEW</span>
 					</p></li>
 				<li><a href="#"><span class="nav-label">Interface</span><span
 						class="fa arrow"></span> </a>
@@ -266,74 +267,72 @@
 			</ul>
 		</div>
 	</aside>
-    <div id="wrapper" th:fragment="site-menu">
-    
-    <div class="normalheader transition animated fadeIn">
-    <div class="hpanel">
-   
-        <div class="panel-body">
-            <a class="small-header-action" href="">
-                <div class="clip-header">
-                    <i class="fa fa-arrow-up"></i>
-                </div>
-               
-            </a>
-            <h2 class="pull-left">Where to go?</h2>
-            <div class="container">
-            
-                <div class="col-md-4">
-                
-                    <ul  class="list-group">
-                        <a href="index.html"><li class="list-group-item"> Bank</li></a>
-                        <li class="list-group-item">Sports</li>
-                         <a href="#" th:href="@{/game/tavern}"><li class="list-group-item"> Barkeeping</li></a>
-                        <li class="list-group-item">Casino</li>
-                    </ul>
-                
-                </div>
-                <div class="col-md-4">
-                    <ul  class="list-group">
-                        <li class="list-group-item">Your house</li>
-                        <li class="list-group-item">Army</li>
-                        <li class="list-group-item">Garden</li>
-                        <li class="list-group-item">Market</li>
-                    </ul>
-                
-                </div>
-                <div class="col-md-4">
-                    <ul  class="list-group">
-                        <li class="list-group-item">Hospital</li>
-                        <li class="list-group-item">Port</li>
-                        <li class="list-group-item">Mine</li>
-                        <li class="list-group-item">Street</li>
-                    </ul>
-                
-                </div>
-            </div>
-            
+	<div id="wrapper" th:fragment="site-menu">
 
-            
-        </div>
-    </div>
-</div>
-        
-        <!-- Game content goes here:  -->
-        
-        <div>
-            
-        
-        </div>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    </div>
+		<div class="normalheader transition animated fadeIn">
+			<div class="hpanel">
+
+				<div class="panel-body">
+					<a class="small-header-action" href="">
+						<div class="clip-header">
+							<i class="fa fa-arrow-up"></i>
+						</div>
+
+					</a>
+					<h2 class="pull-left">Where to go?</h2>
+					<div class="container">
+
+						<div class="col-md-4">
+
+							<ul class="list-group">
+								<a href="index.html"><li class="list-group-item">Bank</li></a>
+								<li class="list-group-item">Sports</li>
+								<a href="#" th:href="@{/game/tavern}"><li
+									class="list-group-item">Barkeeping</li></a>
+								<li class="list-group-item">Casino</li>
+							</ul>
+
+						</div>
+						<div class="col-md-4">
+							<ul class="list-group">
+								<li class="list-group-item">Your house</li>
+								<li class="list-group-item">Army</li>
+								<li class="list-group-item">Garden</li>
+								<li class="list-group-item">Market</li>
+							</ul>
+
+						</div>
+						<div class="col-md-4">
+							<ul class="list-group">
+								<li class="list-group-item">Hospital</li>
+								<li class="list-group-item">Port</li>
+								<li class="list-group-item">Mine</li>
+								<li class="list-group-item">Street</li>
+							</ul>
+
+						</div>
+					</div>
+
+
+
+				</div>
+			</div>
+		</div>
+
+		<!-- Game content goes here:  -->
+
+		<div></div>
+
+
+
+
+
+
+
+
+
+
+	</div>
 
 
 	<div th:fragment="site-footer">

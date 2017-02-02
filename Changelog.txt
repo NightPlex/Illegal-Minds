@@ -1,0 +1,10 @@
+Starting to log changes and updates for future:
+
+---22.012.2016---
+
+Added major comments to html files for better readability.
+
+30.01.2017
+
+Added Experience handling
+Added Bar keeping logic
