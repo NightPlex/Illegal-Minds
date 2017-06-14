@@ -373,7 +373,7 @@ public class BarStorage {
 	}
 
 	public BarStorage() {
-		super();
+
 	}
 
 }

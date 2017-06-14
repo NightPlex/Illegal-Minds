@@ -225,7 +225,7 @@ More detail and specific examples can be found in the included HTML file.
 				var value = data[i].data[0][1];
 				if (numCombined < 2 || value / total > options.series.pie.combine.threshold) {
 					newdata.push(
-						$.extend(data[i], {     /* extend to allow keeping all other original data values
+						$.extend(data[i], {     /* extend to allow keeping all util original data values
 						                           and using them e.g. in labelFormatter. */
 							data: [[1, value]],
 							color: data[i].color,
@@ -264,7 +264,7 @@ More detail and specific examples can be found in the included HTML file.
 
 			// WARNING: HACK! REWRITE THIS CODE AS SOON AS POSSIBLE!
 
-			// When combining smaller slices into an 'other' slice, we need to
+			// When combining smaller slices into an 'util' slice, we need to
 			// add a new series.  Since Flot gives plugins no way to modify the
 			// list of series, the pie plugin uses a hack where the first call
 			// to processDatapoints results in a call to setData with the new

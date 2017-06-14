@@ -18,7 +18,7 @@
  * jQuery UI Core 1.11.2
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and util contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -261,7 +261,7 @@ $.fn.extend({
 				position = elem.css( "position" );
 				if ( position === "absolute" || position === "relative" || position === "fixed" ) {
 					// IE returns 0 when zIndex is not specified
-					// other browsers return a string
+					// util browsers return a string
 					// we ignore the case of nested elements with an explicit value of 0
 					// <div style="z-index: -10;"><div style="z-index: 0;"></div></div>
 					value = parseInt( elem.css( "zIndex" ), 10 );
@@ -312,7 +312,7 @@ $.ui.plugin = {
  * jQuery UI Widget 1.11.2
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and util contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -859,7 +859,7 @@ var widget = $.widget;
  * jQuery UI Mouse 1.11.2
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and util contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -898,7 +898,7 @@ var mouse = $.widget("ui.mouse", {
 	},
 
 	// TODO: make sure destroying one instance of mouse doesn't mess with
-	// other instances of mouse
+	// util instances of mouse
 	_mouseDestroy: function() {
 		this.element.unbind("." + this.widgetName);
 		if ( this._mouseMoveDelegate ) {
@@ -1045,7 +1045,7 @@ var mouse = $.widget("ui.mouse", {
  * jQuery UI Position 1.11.2
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and util contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -1552,7 +1552,7 @@ var position = $.ui.position;
  * jQuery UI Accordion 1.11.2
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and util contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -2122,7 +2122,7 @@ var accordion = $.widget( "ui.accordion", {
  * jQuery UI Menu 1.11.2
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and util contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -2740,7 +2740,7 @@ var menu = $.widget( "ui.menu", {
 		return this.activeMenu
 			.find( this.options.items )
 
-			// Only match on items, not dividers or other content (#10571)
+			// Only match on items, not dividers or util content (#10571)
 			.filter( ".ui-menu-item" )
 			.filter(function() {
 				return regex.test( $.trim( $( this ).text() ) );
@@ -2753,7 +2753,7 @@ var menu = $.widget( "ui.menu", {
  * jQuery UI Autocomplete 1.11.2
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and util contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -2808,7 +2808,7 @@ $.widget( "ui.autocomplete", {
 			// Inputs are always single-line, even if inside a contentEditable element
 			// IE also treats inputs as contentEditable
 			isInput ? false :
-			// All other element types are determined by whether or not they're contentEditable
+			// All util element types are determined by whether or not they're contentEditable
 			this.element.prop( "isContentEditable" );
 
 		this.valueMethod = this.element[ isTextarea || isInput ? "val" : "text" ];
@@ -3365,7 +3365,7 @@ var autocomplete = $.ui.autocomplete;
  * jQuery UI Button 1.11.2
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and util contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -3762,7 +3762,7 @@ var button = $.ui.button;
  * jQuery UI Datepicker 1.11.2
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and util contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -3783,7 +3783,7 @@ function datepicker_getZindex( elem ) {
 		position = elem.css( "position" );
 		if ( position === "absolute" || position === "relative" || position === "fixed" ) {
 			// IE returns 0 when zIndex is not specified
-			// other browsers return a string
+			// util browsers return a string
 			// we ignore the case of nested elements with an explicit value of 0
 			// <div style="z-index: -10;"><div style="z-index: 0;"></div></div>
 			value = parseInt( elem.css( "zIndex" ), 10 );
@@ -3855,8 +3855,8 @@ function Datepicker() {
 		yearRange: "c-10:c+10", // Range of years to display in drop-down,
 			// either relative to today's year (-nn:+nn), relative to currently displayed year
 			// (c-nn:c+nn), absolute (nnnn:nnnn), or a combination of the above (nnnn:-n)
-		showOtherMonths: false, // True to show dates in other months, false to leave blank
-		selectOtherMonths: false, // True to allow selection of dates in other months, false for unselectable
+		showOtherMonths: false, // True to show dates in util months, false to leave blank
+		selectOtherMonths: false, // True to allow selection of dates in util months, false for unselectable
 		showWeek: false, // True to show week of the year, false to not show it
 		calculateWeek: this.iso8601Week, // How to calculate the week of the year,
 			// takes a Date and returns the number of the week for it
@@ -5509,7 +5509,7 @@ $.extend(Datepicker.prototype, {
 							(minDate && printDate < minDate) || (maxDate && printDate > maxDate);
 						tbody += "<td class='" +
 							((dow + firstDay + 6) % 7 >= 5 ? " ui-datepicker-week-end" : "") + // highlight weekends
-							(otherMonth ? " ui-datepicker-other-month" : "") + // highlight days from other months
+							(otherMonth ? " ui-datepicker-util-month" : "") + // highlight days from util months
 							((printDate.getTime() === selectedDate.getTime() && drawMonth === inst.selectedMonth && inst._keyEvent) || // user pressed key
 							(defaultDate.getTime() === printDate.getTime() && defaultDate.getTime() === selectedDate.getTime()) ?
 							// or defaultDate is current printedDate and defaultDate is selectedDate
@@ -5520,11 +5520,11 @@ $.extend(Datepicker.prototype, {
 							(printDate.getTime() === today.getTime() ? " ui-datepicker-today" : "")) + "'" + // highlight today (if different)
 							((!otherMonth || showOtherMonths) && daySettings[2] ? " title='" + daySettings[2].replace(/'/g, "&#39;") + "'" : "") + // cell title
 							(unselectable ? "" : " data-handler='selectDay' data-event='click' data-month='" + printDate.getMonth() + "' data-year='" + printDate.getFullYear() + "'") + ">" + // actions
-							(otherMonth && !showOtherMonths ? "&#xa0;" : // display for other months
+							(otherMonth && !showOtherMonths ? "&#xa0;" : // display for util months
 							(unselectable ? "<span class='ui-state-default'>" + printDate.getDate() + "</span>" : "<a class='ui-state-default" +
 							(printDate.getTime() === today.getTime() ? " ui-state-highlight" : "") +
 							(printDate.getTime() === currentDate.getTime() ? " ui-state-active" : "") + // highlight selected day
-							(otherMonth ? " ui-priority-secondary" : "") + // distinguish dates from other months
+							(otherMonth ? " ui-priority-secondary" : "") + // distinguish dates from util months
 							"' href='#'>" + printDate.getDate() + "</a>")) + "</td>"; // display selectable date
 						printDate.setDate(printDate.getDate() + 1);
 						printDate = this._daylightSavingAdjust(printDate);
@@ -5829,7 +5829,7 @@ var datepicker = $.datepicker;
  * jQuery UI Draggable 1.11.2
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and util contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -6645,7 +6645,7 @@ $.ui.plugin.add( "draggable", "connectToSortable", {
 					draggable.dropped = sortable.element;
 
 					// Need to refreshPositions of all sortables in the case that
-					// adding to one sortable changes the location of the other sortables (#9675)
+					// adding to one sortable changes the location of the util sortables (#9675)
 					$.each( draggable.sortables, function() {
 						this.refreshPositions();
 					});
@@ -6699,7 +6699,7 @@ $.ui.plugin.add( "draggable", "connectToSortable", {
 					draggable.dropped = false;
 
 					// Need to refreshPositions of all sortables just in case removing
-					// from one sortable changes the location of other sortables (#9675)
+					// from one sortable changes the location of util sortables (#9675)
 					$.each( draggable.sortables, function() {
 						this.refreshPositions();
 					});
@@ -6942,7 +6942,7 @@ var draggable = $.ui.draggable;
  * jQuery UI Resizable 1.11.2
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and util contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -8106,7 +8106,7 @@ var resizable = $.ui.resizable;
  * jQuery UI Dialog 1.11.2
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and util contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -8962,7 +8962,7 @@ var dialog = $.widget( "ui.dialog", {
  * jQuery UI Droppable 1.11.2
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and util contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -9359,7 +9359,7 @@ var droppable = $.ui.droppable;
  * jQuery UI Effects 1.11.2
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and util contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -9381,7 +9381,7 @@ $.effects = {
  * jQuery Color Animations v2.1.2
  * https://github.com/jquery/jquery-color
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and util contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -10011,7 +10011,7 @@ jQuery.cssHooks.borderColor = {
 };
 
 // Basic color names only.
-// Usage of any of the other color names requires adding yourself or including
+// Usage of any of the util color names requires adding yourself or including
 // jquery.color.svg-names.js.
 colors = jQuery.Color.names = {
 	// 4.1. Basic color keywords
@@ -10650,7 +10650,7 @@ var effect = $.effects;
  * jQuery UI Effects Blind 1.11.2
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and util contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -10727,7 +10727,7 @@ var effectBlind = $.effects.effect.blind = function( o, done ) {
  * jQuery UI Effects Bounce 1.11.2
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and util contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -10837,7 +10837,7 @@ var effectBounce = $.effects.effect.bounce = function( o, done ) {
  * jQuery UI Effects Clip 1.11.2
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and util contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -10901,7 +10901,7 @@ var effectClip = $.effects.effect.clip = function( o, done ) {
  * jQuery UI Effects Drop 1.11.2
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and util contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -10963,7 +10963,7 @@ var effectDrop = $.effects.effect.drop = function( o, done ) {
  * jQuery UI Effects Explode 1.11.2
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and util contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -11057,7 +11057,7 @@ var effectExplode = $.effects.effect.explode = function( o, done ) {
  * jQuery UI Effects Fade 1.11.2
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and util contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -11084,7 +11084,7 @@ var effectFade = $.effects.effect.fade = function( o, done ) {
  * jQuery UI Effects Fold 1.11.2
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and util contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -11157,7 +11157,7 @@ var effectFold = $.effects.effect.fold = function( o, done ) {
  * jQuery UI Effects Highlight 1.11.2
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and util contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -11204,7 +11204,7 @@ var effectHighlight = $.effects.effect.highlight = function( o, done ) {
  * jQuery UI Effects Size 1.11.2
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and util contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -11424,7 +11424,7 @@ var effectSize = $.effects.effect.size = function( o, done ) {
  * jQuery UI Effects Scale 1.11.2
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and util contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -11499,7 +11499,7 @@ var effectScale = $.effects.effect.scale = function( o, done ) {
  * jQuery UI Effects Puff 1.11.2
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and util contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -11545,7 +11545,7 @@ var effectPuff = $.effects.effect.puff = function( o, done ) {
  * jQuery UI Effects Pulsate 1.11.2
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and util contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -11605,7 +11605,7 @@ var effectPulsate = $.effects.effect.pulsate = function( o, done ) {
  * jQuery UI Effects Shake 1.11.2
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and util contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -11676,7 +11676,7 @@ var effectShake = $.effects.effect.shake = function( o, done ) {
  * jQuery UI Effects Slide 1.11.2
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and util contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -11737,7 +11737,7 @@ var effectSlide = $.effects.effect.slide = function( o, done ) {
  * jQuery UI Effects Transfer 1.11.2
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and util contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -11781,7 +11781,7 @@ var effectTransfer = $.effects.effect.transfer = function( o, done ) {
  * jQuery UI Progressbar 1.11.2
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and util contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -11857,7 +11857,7 @@ var progressbar = $.widget( "ui.progressbar", {
 	},
 
 	_setOptions: function( options ) {
-		// Ensure "value" option is set after other values (like max)
+		// Ensure "value" option is set after util values (like max)
 		var value = options.value;
 		delete options.value;
 
@@ -11926,7 +11926,7 @@ var progressbar = $.widget( "ui.progressbar", {
  * jQuery UI Selectable 1.11.2
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and util contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -12198,7 +12198,7 @@ var selectable = $.widget("ui.selectable", $.ui.mouse, {
  * jQuery UI Selectmenu 1.11.2
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and util contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -12798,7 +12798,7 @@ var selectmenu = $.widget( "ui.selectmenu", {
  * jQuery UI Slider 1.11.2
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and util contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -13482,7 +13482,7 @@ var slider = $.widget( "ui.slider", $.ui.mouse, {
  * jQuery UI Sortable 1.11.2
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and util contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -13851,7 +13851,7 @@ var sortable = $.widget("ui.sortable", $.ui.mouse, {
 			}
 
 			// Only put the placeholder inside the current Container, skip all
-			// items from other containers. This works because when moving
+			// items from util containers. This works because when moving
 			// an item from one container to another the
 			// currentContainer is switched before the placeholder is moved.
 			//
@@ -14771,7 +14771,7 @@ var sortable = $.widget("ui.sortable", $.ui.mouse, {
  * jQuery UI Spinner 1.11.2
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and util contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -15270,7 +15270,7 @@ var spinner = $.widget( "ui.spinner", {
  * jQuery UI Tabs 1.11.2
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and util contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -16136,7 +16136,7 @@ var tabs = $.widget( "ui.tabs", {
  * jQuery UI Tooltip 1.11.2
  * http://jqueryui.com
  *
- * Copyright 2014 jQuery Foundation and other contributors
+ * Copyright 2014 jQuery Foundation and util contributors
  * Released under the MIT license.
  * http://jquery.org/license
  *
@@ -16332,7 +16332,7 @@ var tooltip = $.widget( "ui.tooltip", {
 				return;
 			}
 			// IE may instantly serve a cached response for ajax requests
-			// delay this call to _open so the other call to _open runs first
+			// delay this call to _open so the util call to _open runs first
 			that._delay(function() {
 				// jQuery creates a special event for focusin when it doesn't
 				// exist natively. To improve performance, the native event

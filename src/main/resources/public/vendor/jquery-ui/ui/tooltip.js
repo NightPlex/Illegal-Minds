@@ -213,7 +213,7 @@ return $.widget( "ui.tooltip", {
 				return;
 			}
 			// IE may instantly serve a cached response for ajax requests
-			// delay this call to _open so the other call to _open runs first
+			// delay this call to _open so the util call to _open runs first
 			that._delay(function() {
 				// jQuery creates a special event for focusin when it doesn't
 				// exist natively. To improve performance, the native event

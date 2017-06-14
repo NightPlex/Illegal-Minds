@@ -3261,7 +3261,7 @@ Base.extend = function(_instance, _static) { // subclass
 	var proto = new this;
 	extend.call(proto, _instance);
   proto.base = function() {
-    // call this method from any other method to invoke that method's ancestor
+    // call this method from any util method to invoke that method's ancestor
   };
 	delete Base._prototyping;
 	
@@ -3329,7 +3329,7 @@ Base.prototype = {
 				extend = this.extend || extend;
 			}
 			var proto = {toSource: null};
-			// do the "toString" and other methods manually
+			// do the "toString" and util methods manually
 			var hidden = ["constructor", "toString", "valueOf"];
 			// if we are prototyping then include the constructor
 			var i = Base._prototyping ? 0 : 1;
@@ -3469,7 +3469,7 @@ wysihtml5.browser = (function() {
     /**
      * Opera and IE are the only browsers who offer the css value
      * in the original unit, thx to the currentStyle object
-     * All other browsers provide the computed style in px via window.getComputedStyle
+     * All util browsers provide the computed style in px via window.getComputedStyle
      */
     hasCurrentStyleProperty: function() {
       return "currentStyle" in testElement;
@@ -3632,7 +3632,7 @@ wysihtml5.browser = (function() {
 
     /**
      * When the caret is in an empty list (<ul><li>|</li></ul>) which is the first child in an contentEditable container
-     * pressing backspace doesn't remove the entire list as done in other browsers
+     * pressing backspace doesn't remove the entire list as done in util browsers
      */
     clearsListsInContentEditableCorrectly: function() {
       return isGecko || isIE || isWebKit;
@@ -5296,7 +5296,7 @@ wysihtml5.dom.replaceWithChildNodes = function(node) {
  *
  * Browser Compatibility:
  *  - Secure in MSIE 6+, but only when the user hasn't made changes to his security level "restricted"
- *  - Partially secure in other browsers (Firefox, Opera, Safari, Chrome, ...)
+ *  - Partially secure in util browsers (Firefox, Opera, Safari, Chrome, ...)
  *
  * Please note that this class can't benefit from the HTML5 sandbox attribute for the following reasons:
  *    - sandboxing doesn't work correctly with inlined content (src="javascript:'<html>...</html>'")
@@ -6176,7 +6176,7 @@ wysihtml5.quirks.cleanPastedHTML = (function() {
       }
 
       try {
-        // This only works when the range boundaries are not overlapping other elements
+        // This only works when the range boundaries are not overlapping util elements
         range.surroundContents(node);
         this.selectNode(node);
       } catch(e) {
@@ -7392,7 +7392,7 @@ wysihtml5.Commands = Base.extend(
         parent = image.parentNode;
         parent.removeChild(image);
 
-        // and it's parent <a> too if it hasn't got any other relevant child nodes
+        // and it's parent <a> too if it hasn't got any util relevant child nodes
         wysihtml5.dom.removeEmptyTextNodes(parent);
         if (parent.nodeName === "A" && !parent.firstChild) {
           composer.selection.setAfter(parent);
@@ -8574,7 +8574,7 @@ wysihtml5.views.View = Base.extend(
         parent = target.parentNode;
         // delete the <img>
         parent.removeChild(target);
-        // and it's parent <a> too if it hasn't got any other child nodes
+        // and it's parent <a> too if it hasn't got any util child nodes
         if (parent.nodeName === "A" && !parent.firstChild) {
           parent.parentNode.removeChild(parent);
         }

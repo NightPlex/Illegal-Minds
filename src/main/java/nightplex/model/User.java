@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 
-/*
+/**
  * Purely for authentication purposes ( Spring Security)
  * Maybe later add this as Account ?? Let's see
  * 
@@ -19,66 +19,63 @@ import javax.persistence.Id;
 
 @Entity
 public class User {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", nullable = false, updatable = false)
-	private Long id;
-	
-	@Column(name = "username", nullable = false, unique = true)
-	private String username;
 
-	@Column(name = "password", nullable = false)
-	private String password;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false, updatable = false)
+    private Long id;
 
-	@Column(name = "role", nullable = false)
-	private String role;
+    @Column(name = "username", nullable = false, unique = true)
+    private String username;
 
-	public Long getId() {
-		return id;
-	}
+    @Column(name = "password", nullable = false)
+    private String password;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @Column(name = "role", nullable = false)
+    private String role;
 
-	public String getUsername() {
-		return username;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public String getRole() {
-		return role;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setRole(String role) {
-		this.role = role;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public User(String username, String password, String role) {
-		super();
-		this.username = username;
-		this.password = password;
-		this.role = role;
-	}
+    public String getRole() {
+        return role;
+    }
 
-	public User() {
-		super();
-	}
-	
-	
-	
-	
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public User(String username, String password, String role) {
+        super();
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
+
+    public User() {
+        super();
+    }
+
 
 }

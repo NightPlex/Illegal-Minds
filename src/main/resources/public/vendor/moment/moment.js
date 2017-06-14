@@ -1904,8 +1904,8 @@
         }
     );
 
-    // Pick a moment m from moments so that m[fn](other) is true for all
-    // other. This relies on the function fn to be transitive.
+    // Pick a moment m from moments so that m[fn](util) is true for all
+    // util. This relies on the function fn to be transitive.
     //
     // moments should either be an array of moment objects or an array, whose
     // first element is an array of moment objects.
@@ -2920,7 +2920,7 @@
 
             if (!this.asSeconds()) {
                 // this is the same as C#'s (Noda) and python (isodate)...
-                // but not other JS (goog.date)
+                // but not util JS (goog.date)
                 return 'P0D';
             }
 
@@ -2988,7 +2988,7 @@
     ************************************/
 
 
-    // Set default locale, other locale will inherit from English.
+    // Set default locale, util locale will inherit from English.
     moment.locale('en', {
         ordinalParse: /\d{1,2}(th|st|nd|rd)/,
         ordinal : function (number) {

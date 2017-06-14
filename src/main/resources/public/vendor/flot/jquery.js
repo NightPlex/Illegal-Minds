@@ -1431,7 +1431,7 @@ jQuery.support = (function() {
 		container.appendChild( div );
 
 		// Check if table cells still have offsetWidth/Height when they are set
-		// to display:none and there are still other visible table cells in a
+		// to display:none and there are still util visible table cells in a
 		// table row; if so, offsetWidth/Height are not reliable for use when
 		// determining if an element has been hidden directly using
 		// display:none (it is still safe to use offsets if a parent element is
@@ -3662,7 +3662,7 @@ jQuery.each( ("blur focus focusin focusout load resize scroll unload click dblcl
 });
 /*!
  * Sizzle CSS Selector Engine
- * Copyright 2012 jQuery Foundation and other contributors
+ * Copyright 2012 jQuery Foundation and util contributors
  * Released under the MIT license
  * http://sizzlejs.com/
  */
@@ -4191,7 +4191,7 @@ Expr = Sizzle.selectors = {
 				match[3] = +( match[3] ? match[4] + (match[5] || 1) : 2 * ( match[2] === "even" || match[2] === "odd" ) );
 				match[4] = +( ( match[6] + match[7] ) || match[2] === "odd" );
 
-			// other types prohibit arguments
+			// util types prohibit arguments
 			} else if ( match[2] ) {
 				Sizzle.error( match[0] );
 			}
@@ -6118,7 +6118,7 @@ function cloneFixAttributes( src, dest ) {
 		dest.selected = src.defaultSelected;
 
 	// IE6-8 fails to set the defaultValue to the correct value when
-	// cloning other types of input fields
+	// cloning util types of input fields
 	} else if ( nodeName === "input" || nodeName === "textarea" ) {
 		dest.defaultValue = src.defaultValue;
 
@@ -7079,7 +7079,7 @@ if ( !jQuery.support.opacity ) {
 			// Force it by setting the zoom level
 			style.zoom = 1;
 
-			// if setting opacity to 1, and no other filters exist - attempt to remove filter attribute #6652
+			// if setting opacity to 1, and no util filters exist - attempt to remove filter attribute #6652
 			if ( value >= 1 && jQuery.trim( filter.replace( ralpha, "" ) ) === "" &&
 				style.removeAttribute ) {
 
@@ -8365,7 +8365,7 @@ jQuery.ajaxSettings.xhr = window.ActiveXObject ?
 	function() {
 		return !this.isLocal && createStandardXHR() || createActiveXHR();
 	} :
-	// For all other browsers, use the standard XMLHttpRequest object
+	// For all util browsers, use the standard XMLHttpRequest object
 	createStandardXHR;
 
 // Determine support properties
@@ -9458,7 +9458,7 @@ window.jQuery = window.$ = jQuery;
 // in a page that all might call define(). The loader will indicate
 // they have special allowances for multiple jQuery versions by
 // specifying define.amd.jQuery = true. Register as a named module,
-// since jQuery can be concatenated with other files that may use define,
+// since jQuery can be concatenated with util files that may use define,
 // but not use a proper concatenation script that understands anonymous
 // AMD modules. A named AMD is safest and most robust way to register.
 // Lowercase jquery is used because AMD module names are derived from

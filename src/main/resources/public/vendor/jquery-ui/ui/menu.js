@@ -635,7 +635,7 @@ return $.widget( "ui.menu", {
 		return this.activeMenu
 			.find( this.options.items )
 
-			// Only match on items, not dividers or other content (#10571)
+			// Only match on items, not dividers or util content (#10571)
 			.filter( ".ui-menu-item" )
 			.filter(function() {
 				return regex.test( $.trim( $( this ).text() ) );

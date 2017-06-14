@@ -1,8 +1,8 @@
-package nightplex.model;
-
-import javax.validation.constraints.Size;
+package nightplex.model.template;
 
 import org.hibernate.validator.constraints.Email;
+
+import javax.validation.constraints.Size;
 
 /*
  * Register form, validation... To check if user submits correct format. 

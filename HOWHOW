@@ -1,0 +1,13 @@
+Initial plan ?
+
+Data structure (hibernate -> java objects(entity system)) - Have main player object? For session.
+Easy access. however every action requires full save  I think?
+player.getBarkeeping.getStorage.getMarley . is it too much ?
+
+Option 2:
+Have java POJO's for each area and populate when needed. But the thing is that data must be accessible all time. So session is required
+write to read from session probably. but if I declare as java beans(spring beans) . and populate the data. Or ?
+
+API is straightforward - manipulate the service?
+Model layer: account - get skills handler and so on.
+
