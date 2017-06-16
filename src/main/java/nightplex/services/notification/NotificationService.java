@@ -1,4 +1,4 @@
-package nightplex.services;
+package nightplex.services.notification;
 
 
 /*

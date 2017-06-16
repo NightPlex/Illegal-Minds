@@ -117,7 +117,6 @@ public class Barkeeping extends Skill{
                       int storageCapacity, BarStorage barStorage, KitchenStorage kitchenStorage) {
         super();
         this.drinks = drinks;
-        this.barkeepingLevel = barkeepingLevel;
         this.reputation = reputation;
         this.hasBoughtBar = hasBoughtBar;
         this.barIsClosed = barIsClosed;
@@ -133,19 +132,18 @@ public class Barkeeping extends Skill{
 
     @Override
     public String toString() {
-        return "Barkeeping [id=" + id + ", drinks=" + drinks + ", barkeepingLevel=" + barkeepingLevel + ", reputation="
+        return "Barkeeping [id=" + id + ", drinks=" + drinks + ", barkeepingLevel="  + ", reputation="
                 + reputation + ", hasBoughtBar=" + hasBoughtBar + ", barIsClosed=" + barIsClosed + ", storageCapacity="
                 + storageCapacity + ", barStorage=" + barStorage + ", kitchenStorage=" + kitchenStorage + "]";
     }
 
-
     @Override
-    public int getBarkeepingExp() {
+    public int getExp() {
         return barkeepingExp;
     }
 
     @Override
-    public void setBarkeepingExp(int i) {
+    public void setExp(int i) {
         barkeepingExp = i;
     }
 }

@@ -3,13 +3,11 @@ package nightplex.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import nightplex.services.barkeeping.BarKeepingService;
+import nightplex.services.skills.barkeeping.BarKeepingService;
 import nightplex.services.repository.AccountRepository;
-import nightplex.services.repository.UserRepository;
 
 @Controller
 public class BarkeepingController {

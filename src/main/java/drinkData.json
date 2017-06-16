@@ -1,0 +1,15 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "drinkName": "Filtered Water",
+      "experience": 4,
+      "requirements": [
+        {
+          "id": 1,
+          "name": "water"
+        }
+      ]
+    }
+  ]
+}

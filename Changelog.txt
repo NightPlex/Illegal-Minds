@@ -8,3 +8,11 @@ Added major comments to html files for better readability.
 
 Added Experience handling
 Added Bar keeping logic
+
+14.06
+Added abstraction layer
+Fixed Experience handling
+Added few other tweaks
+
+16.06
+Adding json reader and json info for drinks.

@@ -2,7 +2,7 @@ package nightplex.controller;
 
 import nightplex.model.template.RegisterForm;
 import nightplex.model.User;
-import nightplex.services.NotificationService;
+import nightplex.services.notification.NotificationService;
 import nightplex.services.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

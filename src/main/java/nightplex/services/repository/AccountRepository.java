@@ -1,10 +1,8 @@
 package nightplex.services.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import nightplex.model.Account;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-
-import nightplex.model.Account;
 
 
 /*
@@ -16,12 +14,11 @@ import nightplex.model.Account;
  * */
 
 
-
 @Repository
-public interface AccountRepository extends CrudRepository<Account, Long>{ //JpaRepository here for mysql
-	
-	Account getByUsername(String username); // Custom Query for getting The Account class with username.
-	
-	Account getById(Long id);
+public interface AccountRepository extends CrudRepository<Account, Long> { //JpaRepository here for mysql
+
+    Account getByUsername(String username); // Custom Query for getting The Account class with username.
+
+    Account getById(Long id);
 
 }

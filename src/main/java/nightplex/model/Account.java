@@ -8,9 +8,8 @@ import javax.persistence.*;
 
 /**
  * Main Table to hold all references to user related data.
- * 
+ * <p>
  * NightPlex
- * 
  */
 
 
@@ -76,6 +75,13 @@ public class Account {
         this.userData = userData;
     }
 
+
+    /**
+     * Initial account creation constructor
+     */
+    public Account(boolean yes) {
+
+    }
 
     public Account(String username, UserData userData, Barkeeping barkeeping) {
         super();

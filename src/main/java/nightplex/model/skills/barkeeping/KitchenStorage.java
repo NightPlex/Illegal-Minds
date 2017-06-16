@@ -15,8 +15,7 @@ public class KitchenStorage {
 	private Long id;
 	
 	private int filteredWater; // Requires water
-	
-	
+
 
 	public KitchenStorage(int filteredWater) {
 		super();
