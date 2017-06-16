@@ -4,10 +4,78 @@
       "id": 1,
       "drinkName": "Filtered Water",
       "experience": 4,
-      "requirements": [
+      "level" : 1,
+      "material": [
         {
           "id": 1,
-          "name": "water"
+          "name": "water",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "drinkName": "Milk",
+      "experience": 14,
+      "level" : 7,
+      "material": [
+        {
+          "id": 1,
+          "name": "Water",
+          "amount": 1
+        },
+        {
+          "id": 2,
+          "name": "Raw Milk",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "drinkName": "Filtered Water",
+      "experience": 4,
+      "material": [
+        {
+          "id": 1,
+          "name": "water",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "drinkName": "Filtered Water",
+      "experience": 4,
+      "material": [
+        {
+          "id": 1,
+          "name": "water",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "drinkName": "Filtered Water",
+      "experience": 4,
+      "material": [
+        {
+          "id": 1,
+          "name": "water",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "drinkName": "Filtered Water",
+      "experience": 4,
+      "material": [
+        {
+          "id": 1,
+          "name": "water",
+          "amount": 1
         }
       ]
     }

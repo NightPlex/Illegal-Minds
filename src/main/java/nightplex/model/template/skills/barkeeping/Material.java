@@ -6,13 +6,23 @@ package nightplex.model.template.skills.barkeeping;
 public class Material {
     private int id;
     private String name;
+    private int amount;
 
     public Material() {
     }
 
-    public Material(int id, String name) {
+    public Material(int id, String name, int amount) {
         this.id = id;
         this.name = name;
+        this.amount = amount;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
     public int getId() {

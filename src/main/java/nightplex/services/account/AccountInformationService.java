@@ -17,7 +17,8 @@ public class AccountInformationService {
     private AccountRepository accountRepository;
 
     public Account getCurrentAccount() {
-        return accountRepository.getByUsername(getCurrentUsername());
+        return getCurrentUserWithOutDb();
+        //return accountRepository.getByUsername(getCurrentUsername());
     }
 
     public void saveAccount(Account account) {
@@ -28,6 +29,10 @@ public class AccountInformationService {
         //Use security context to get current user
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         return username;
+    }
+
+    public Account getCurrentUserWithOutDb() {
+        return accountRepository.getById(1L);
     }
 }
 

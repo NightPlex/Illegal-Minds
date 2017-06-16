@@ -16,3 +16,5 @@ Added few other tweaks
 
 16.06
 Adding json reader and json info for drinks.
+Added DrinkTasks to handle drinking logic
+Lot of new features check git.

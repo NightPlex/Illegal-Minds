@@ -2,6 +2,7 @@ package nightplex.services.skills.barkeeping;
 
 import nightplex.ServerCONF;
 import nightplex.model.Account;
+import nightplex.services.GeneralService;
 import nightplex.services.account.AccountInformationService;
 import nightplex.services.skills.barkeeping.logic.DrinkTasks;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ public class BarKeepingServiceImpl implements BarKeepingService {
 
     @Autowired
     private AccountInformationService accountInformationService;
+
+    @Autowired
+    private GeneralService generalService;
 
     /**
      * Buy bar for fixed price.
@@ -41,7 +45,8 @@ public class BarKeepingServiceImpl implements BarKeepingService {
 
         Account account = accountInformationService.getCurrentAccount();
 
-        if (DrinkTasks.buyRawMaterial(account, id, amount)) {
+        if (DrinkTasks.changeRawMaterial(account, id, amount, true)) {
+            accountInformationService.saveAccount(account);
             return true;
         } else {
             return false;
@@ -53,21 +58,10 @@ public class BarKeepingServiceImpl implements BarKeepingService {
 
         Account account = accountInformationService.getCurrentAccount();
 
-        if (account.getBarkeeping().getBarStorage().getWater() > 0) {
-
-            account.getBarkeeping().getBarStorage()
-                    .setWater(account.getBarkeeping().getBarStorage().getWater() - 1);
-
-            account.getBarkeeping().getKitchenStorage()
-                    .setFilteredWater(account.getBarkeeping().getKitchenStorage().getFilteredWater() + 1);
-            // check for xp and lvl change.
-
-            //repo.save(account);
-
+        if (DrinkTasks.makeDrink(generalService.getDrink(id), account)) {
+            accountInformationService.saveAccount(account);
             return true;
-
         } else {
-
             return false;
         }
     }

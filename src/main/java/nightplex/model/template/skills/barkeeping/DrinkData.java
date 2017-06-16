@@ -10,16 +10,26 @@ public class DrinkData {
     private int id;
     private String drinkName;
     private int experience;
+    private int level;
     private List<Material> material;
 
     public DrinkData() {
     }
 
-    public DrinkData(int id, String drinkName, int experience, List<Material> material) {
+    public DrinkData(int id, String drinkName, int experience, List<Material> material, int level) {
         this.id = id;
         this.drinkName = drinkName;
         this.experience = experience;
         this.material = material;
+        this.level = level;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 
     public int getId() {
