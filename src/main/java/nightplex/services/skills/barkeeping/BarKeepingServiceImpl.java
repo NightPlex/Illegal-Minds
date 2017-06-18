@@ -4,6 +4,7 @@ import nightplex.ServerCONF;
 import nightplex.model.Account;
 import nightplex.services.GeneralService;
 import nightplex.services.account.AccountInformationService;
+import nightplex.services.notification.NotificationService;
 import nightplex.services.skills.barkeeping.logic.DrinkTasks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,9 @@ public class BarKeepingServiceImpl implements BarKeepingService {
     @Autowired
     private GeneralService generalService;
 
+    @Autowired
+    private NotificationService notificationService;
+
     /**
      * Buy bar for fixed price.
      */
@@ -36,6 +40,7 @@ public class BarKeepingServiceImpl implements BarKeepingService {
             accountInformationService.saveAccount(account);
             return true;
         } else {
+            notificationService.addErrorMessage("Not enough money", "You do not have enough money to buy own bar!");
             return false;
         }
     }
@@ -49,6 +54,7 @@ public class BarKeepingServiceImpl implements BarKeepingService {
             accountInformationService.saveAccount(account);
             return true;
         } else {
+            notificationService.addErrorMessage("Not enough room", "You cannot store more than: " + account.getBarkeeping().getStorageCapacity());
             return false;
         }
     }
@@ -62,6 +68,7 @@ public class BarKeepingServiceImpl implements BarKeepingService {
             accountInformationService.saveAccount(account);
             return true;
         } else {
+            notificationService.addErrorMessage("No material", "Make sure you have all the necessary material!");
             return false;
         }
     }
@@ -76,12 +83,15 @@ public class BarKeepingServiceImpl implements BarKeepingService {
 
             account.getBarkeeping().setBarIsClosed(true);
 
-            return true;
+            notificationService.addInfoMessage("Success", "You closed your bar");
 
+            return true;
 
         } else {
 
             account.getBarkeeping().setBarIsClosed(false);
+            notificationService.addInfoMessage("Success", "You opened your bar");
+
             return true;
 
         }

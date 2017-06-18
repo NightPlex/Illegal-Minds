@@ -97,8 +97,7 @@ public class Account {
 
     @Override
     public String toString() {
-        return "Account [id=" + id + ", username=" + username + ", userData=" + userData + ", barkeeping=" + barkeeping
-                + "]";
+        return "";
     }
 
 
