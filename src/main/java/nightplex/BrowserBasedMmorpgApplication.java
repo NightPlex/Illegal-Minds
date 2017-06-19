@@ -3,7 +3,6 @@ package nightplex;
 import nightplex.model.Account;
 import nightplex.model.User;
 import nightplex.model.UserData;
-import nightplex.model.skills.barkeeping.BarStorage;
 import nightplex.model.skills.barkeeping.Barkeeping;
 import nightplex.services.repository.AccountRepository;
 import nightplex.services.repository.UserRepository;
@@ -48,8 +47,7 @@ public class BrowserBasedMmorpgApplication {
         return (args) -> {
 
             UserData d = new UserData(56, 212000000, 27, 277, 2666);
-            BarStorage s = new BarStorage(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-            Barkeeping b = new Barkeeping(1, 0, 0, false, false, 30000, s);
+            Barkeeping b = new Barkeeping(1, 0, 0, false, false, 30000);
 
             Account l = new Account("steven", d, b);
 

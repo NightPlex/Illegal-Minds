@@ -1,6 +1,5 @@
 package nightplex.model.skills.barkeeping;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import nightplex.model.skills.Skill;
 
 import javax.persistence.*;
@@ -42,10 +41,6 @@ public class Barkeeping extends Skill {
     //Product storage -- raw materials for making drinks.. Need to order them in order to make drinks.
 
     private int storageCapacity; // Maximum amount of raw materials that can be stored
-
-    @ManyToOne(cascade = CascadeType.ALL) // Simply declaring that children table to be made also,  otherwise error.
-    @JsonIgnore
-    private BarStorage barStorage; // All stored products.
 
     public Map<String, Integer> getIngredients() {
         return ingredients;
@@ -103,23 +98,14 @@ public class Barkeeping extends Skill {
         this.storageCapacity = storageCapacity;
     }
 
-    public BarStorage getBarStorage() {
-        return barStorage;
-    }
-
-    public void setBarStorage(BarStorage barStorage) {
-        this.barStorage = barStorage;
-    }
-
     public Barkeeping(int barkeepingLevel, int barkeepingExp, int reputation, boolean hasBoughtBar, boolean barIsClosed,
-                      int storageCapacity, BarStorage barStorage) {
+                      int storageCapacity) {
         super();
         this.drinks = drinks;
         this.reputation = reputation;
         this.hasBoughtBar = hasBoughtBar;
         this.barIsClosed = barIsClosed;
         this.storageCapacity = storageCapacity;
-        this.barStorage = barStorage;
         this.barkeepingExp = barkeepingExp;
     }
 
@@ -131,7 +117,7 @@ public class Barkeeping extends Skill {
     public String toString() {
         return "Barkeeping [id=" + id + ", drinks=" + drinks + ", barkeepingLevel=" + ", reputation="
                 + reputation + ", hasBoughtBar=" + hasBoughtBar + ", barIsClosed=" + barIsClosed + ", storageCapacity="
-                + storageCapacity + ", barStorage=" + barStorage + ", kitchenStorage="  + "]";
+                + storageCapacity + ", barStorage=" + ", kitchenStorage="  + "]";
     }
 
     @Override
