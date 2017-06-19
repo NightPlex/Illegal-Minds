@@ -22,3 +22,4 @@ Lot of new features check git.
 19.06
 Completed making drinks
 Started drink selling logic
+Changed the way that ingredients and drinks work.

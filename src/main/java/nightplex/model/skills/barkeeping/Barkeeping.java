@@ -1,7 +1,9 @@
 package nightplex.model.skills.barkeeping;
 
 import nightplex.model.skills.Skill;
+import nightplex.model.template.skills.barkeeping.DrinkData;
 
+import javax.jws.WebParam;
 import javax.persistence.*;
 import java.util.Map;
 
@@ -34,6 +36,12 @@ public class Barkeeping extends Skill {
     @Column(name = "amount")
     private Map<String, Integer> ingredients;
 
+    @ElementCollection(targetClass = Integer.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "barkeeping_drinks")
+    @MapKeyColumn(name = "drink_id")
+    @Column(name = "drink_amount")
+    private Map<Integer, Integer> readyDrinks;
+
     private boolean hasBoughtBar; // When you login, you have no bar. You need to pay  to get it.
 
     private boolean barIsClosed; // false - closed, no customers. True: Open and ready to server
@@ -41,6 +49,23 @@ public class Barkeeping extends Skill {
     //Product storage -- raw materials for making drinks.. Need to order them in order to make drinks.
 
     private int storageCapacity; // Maximum amount of raw materials that can be stored
+
+    public int getBarkeepingExp() {
+        return barkeepingExp;
+    }
+
+    public void setBarkeepingExp(int barkeepingExp) {
+        this.barkeepingExp = barkeepingExp;
+    }
+
+
+    public Map<Integer, Integer> getReadyDrinks() {
+        return readyDrinks;
+    }
+
+    public void setReadyDrinks(Map<Integer, Integer> readyDrinks) {
+        this.readyDrinks = readyDrinks;
+    }
 
     public Map<String, Integer> getIngredients() {
         return ingredients;
