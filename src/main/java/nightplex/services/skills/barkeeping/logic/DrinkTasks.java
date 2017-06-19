@@ -6,9 +6,8 @@ import nightplex.model.template.skills.barkeeping.Material;
 
 /**
  * Created by steven.tihomirov on 16.6.2017.
- *
+ * <p>
  * Generate some dummy method
- *
  */
 public class DrinkTasks {
 
@@ -19,7 +18,7 @@ public class DrinkTasks {
     }
 
     private static boolean hasLevel(Account account, int level) {
-        if(account.getBarkeeping().getLevel() >= level) {
+        if (account.getBarkeeping().getLevel() >= level) {
             return true;
         } else {
             return false;
@@ -28,14 +27,13 @@ public class DrinkTasks {
 
     public static boolean makeDrink(DrinkData drinkData, Account account) {
         //Has level required?
-        if(!hasLevel(account, drinkData.getLevel())) {
+        if (!hasLevel(account, drinkData.getLevel())) {
             return false;
         }
         //First check that there are ingredients
-        System.out.println("test");
-        for(Material material : drinkData.getMaterial()) {
-            if(!changeRawMaterial(account, material.getId(), material.getAmount(), false)) {
-                return false;
+        for (Material material : drinkData.getMaterial()) {
+            if (!removeRawMaterial(account, material.getName(), material.getAmount())) {
+              return false;
             }
         }
         account.getBarkeeping().addExp(drinkData.getExperience());
@@ -45,29 +43,22 @@ public class DrinkTasks {
 
     //Change raw material
     //Ignore the design here, it's just dummy change.
-    public static boolean changeRawMaterial(Account account, int id, int amount, boolean toAdd) {
+    public static boolean addRawMaterial(Account account, String ingredient, int amount) {
+        account.getBarkeeping().addIngredient(ingredient, amount);
+        return true;
+    }
+
+    public static boolean removeRawMaterial(Account account, String ingredient, int amount) {
+        if (account.getBarkeeping().removeIngredient(ingredient, amount)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static void addDrink(int id, Account account) {
         switch (id) {
-            //water
             case 1:
-                if(toAdd) {
-                    if (hasRoom(account, amount))
-                        account.getBarkeeping().getBarStorage().setWater(account.getBarkeeping().getBarStorage().getWater() + amount);
-                }else {
-                    account.getBarkeeping().getBarStorage().setWater(account.getBarkeeping().getBarStorage().getWater() - amount);
-
-                }
-                return true;
-            case 2:
-                if(toAdd) {
-                    if (hasRoom(account, amount))
-                        account.getBarkeeping().getBarStorage().setRawMilk(account.getBarkeeping().getBarStorage().getRawMilk() + amount);
-                }else {
-                    account.getBarkeeping().getBarStorage().setRawMilk(account.getBarkeeping().getBarStorage().getRawMilk() - amount);
-
-                }
-                return true;
-            default:
-                return false;
         }
     }
 }

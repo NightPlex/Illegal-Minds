@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import nightplex.model.skills.Skill;
 
 import javax.persistence.*;
+import java.util.Map;
 
 /*
  * First skill is bar keeping. Which includes everything needed to hold your bar.
@@ -11,7 +12,7 @@ import javax.persistence.*;
  * */
 
 @Entity
-public class Barkeeping extends Skill{
+public class Barkeeping extends Skill {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,8 +28,12 @@ public class Barkeeping extends Skill{
 
     private int reputation;  // Your bar's reputation, of which popularity depends.
 
-
-    //Bar keeping booleans.
+    //Eager meaning that all data is loaded to master Account. Lazy not efficent here.
+    @ElementCollection(targetClass = Integer.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "barkeeping_ingredients")
+    @MapKeyColumn(name = "ingredient_name")
+    @Column(name = "amount")
+    private Map<String, Integer> ingredients;
 
     private boolean hasBoughtBar; // When you login, you have no bar. You need to pay  to get it.
 
@@ -42,11 +47,13 @@ public class Barkeeping extends Skill{
     @JsonIgnore
     private BarStorage barStorage; // All stored products.
 
+    public Map<String, Integer> getIngredients() {
+        return ingredients;
+    }
 
-    @ManyToOne(cascade = CascadeType.ALL) // Simply declaring that children table to be made also,  otherwise error.
-    @JsonIgnore
-    private KitchenStorage kitchenStorage; // Kitchen drinks stored here.
-
+    public void setIngredients(Map<String, Integer> ingredients) {
+        this.ingredients = ingredients;
+    }
 
     public Long getId() {
         return id;
@@ -62,15 +69,6 @@ public class Barkeeping extends Skill{
 
     public void setDrinks(int drinks) {
         this.drinks = drinks;
-    }
-
-
-    public KitchenStorage getKitchenStorage() {
-        return kitchenStorage;
-    }
-
-    public void setKitchenStorage(KitchenStorage kitchenStorage) {
-        this.kitchenStorage = kitchenStorage;
     }
 
     public int getReputation() {
@@ -114,7 +112,7 @@ public class Barkeeping extends Skill{
     }
 
     public Barkeeping(int barkeepingLevel, int barkeepingExp, int reputation, boolean hasBoughtBar, boolean barIsClosed,
-                      int storageCapacity, BarStorage barStorage, KitchenStorage kitchenStorage) {
+                      int storageCapacity, BarStorage barStorage) {
         super();
         this.drinks = drinks;
         this.reputation = reputation;
@@ -122,7 +120,6 @@ public class Barkeeping extends Skill{
         this.barIsClosed = barIsClosed;
         this.storageCapacity = storageCapacity;
         this.barStorage = barStorage;
-        this.kitchenStorage = kitchenStorage;
         this.barkeepingExp = barkeepingExp;
     }
 
@@ -132,9 +129,9 @@ public class Barkeeping extends Skill{
 
     @Override
     public String toString() {
-        return "Barkeeping [id=" + id + ", drinks=" + drinks + ", barkeepingLevel="  + ", reputation="
+        return "Barkeeping [id=" + id + ", drinks=" + drinks + ", barkeepingLevel=" + ", reputation="
                 + reputation + ", hasBoughtBar=" + hasBoughtBar + ", barIsClosed=" + barIsClosed + ", storageCapacity="
-                + storageCapacity + ", barStorage=" + barStorage + ", kitchenStorage=" + kitchenStorage + "]";
+                + storageCapacity + ", barStorage=" + barStorage + ", kitchenStorage="  + "]";
     }
 
     @Override
@@ -145,5 +142,24 @@ public class Barkeeping extends Skill{
     @Override
     public void setExp(int i) {
         barkeepingExp = i;
+    }
+
+    public void addIngredient(String ingredient, int amount) {
+        Map<String, Integer> temp = getIngredients();
+        if(temp.get(ingredient) != null) {
+            temp.put(ingredient, temp.get(ingredient) + amount);
+        } else {
+            temp.put(ingredient, amount);
+        }
+    }
+
+    public boolean removeIngredient(String ingredient, int amount) {
+        Map<String, Integer> temp = getIngredients();
+        if(temp.get(ingredient) == null || temp.get(ingredient) - amount < 0) {
+            return false;
+        }
+
+        temp.put(ingredient, temp.get(ingredient) - amount);
+        return true;
     }
 }

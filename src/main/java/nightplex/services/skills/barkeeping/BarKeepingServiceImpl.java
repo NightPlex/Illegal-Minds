@@ -46,15 +46,28 @@ public class BarKeepingServiceImpl implements BarKeepingService {
     }
 
     @Override
-    public boolean buyRawMaterial(int amount, int id) {
+    public boolean buyRawMaterial(int amount, String ingredient) {
 
         Account account = accountInformationService.getCurrentAccount();
 
-        if (DrinkTasks.changeRawMaterial(account, id, amount, true)) {
+        if (DrinkTasks.addRawMaterial(account, ingredient, amount)) {
             accountInformationService.saveAccount(account);
             return true;
         } else {
             notificationService.addErrorMessage("Not enough room", "You cannot store more than: " + account.getBarkeeping().getStorageCapacity());
+            return false;
+        }
+    }
+
+    @Override
+    public boolean removeRawMaterial(int amount, String ingredients) {
+        Account account = accountInformationService.getCurrentAccount();
+
+        if (DrinkTasks.removeRawMaterial(account, ingredients, amount)) {
+            accountInformationService.saveAccount(account);
+            return true;
+        } else {
+            notificationService.addErrorMessage("Not enough ingredient", "You don't have enough ingredients: " + account.getBarkeeping().getStorageCapacity());
             return false;
         }
     }

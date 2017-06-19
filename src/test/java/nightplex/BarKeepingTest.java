@@ -48,7 +48,7 @@ public class BarKeepingTest {
 		barServ.buyBar();
 		account = accountInformationService.getCurrentUserWithOutDb();
 		assertThat(account.getBarkeeping().isHasBoughtBar()).isEqualTo(true);
-		barServ.buyRawMaterial(100, 1);
+		//barServ.buyRawMaterial(100, 1);
 		account = accountInformationService.getCurrentUserWithOutDb();
 		assertThat(account.getBarkeeping().getBarStorage().getWater()).isEqualTo(100);
 		barServ.makeDrink(1);

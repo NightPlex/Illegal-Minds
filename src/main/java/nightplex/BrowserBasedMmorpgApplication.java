@@ -1,20 +1,18 @@
 package nightplex;
 
+import nightplex.model.Account;
+import nightplex.model.User;
+import nightplex.model.UserData;
+import nightplex.model.skills.barkeeping.BarStorage;
+import nightplex.model.skills.barkeeping.Barkeeping;
+import nightplex.services.repository.AccountRepository;
+import nightplex.services.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
-
-import nightplex.model.Account;
-import nightplex.model.User;
-import nightplex.model.UserData;
-import nightplex.model.skills.barkeeping.BarStorage;
-import nightplex.model.skills.barkeeping.Barkeeping;
-import nightplex.model.skills.barkeeping.KitchenStorage;
-import nightplex.services.repository.AccountRepository;
-import nightplex.services.repository.UserRepository;
 
 @SpringBootApplication
 @EnableScheduling // adding some interaction with schedule
@@ -51,8 +49,7 @@ public class BrowserBasedMmorpgApplication {
 
             UserData d = new UserData(56, 212000000, 27, 277, 2666);
             BarStorage s = new BarStorage(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-            KitchenStorage k = new KitchenStorage(0);
-            Barkeeping b = new Barkeeping(1, 0, 0, false, false, 30000, s, k);
+            Barkeeping b = new Barkeeping(1, 0, 0, false, false, 30000, s);
 
             Account l = new Account("steven", d, b);
 
@@ -62,6 +59,10 @@ public class BrowserBasedMmorpgApplication {
             //System.out.println(repo.getById(1L).getUserData().getMoney());
 
             repou.save(new User("steven", "test", "USER"));
+
+            Account account = repo.getByUsername("steven");
+
+            System.out.println(account.getBarkeeping().getIngredients().get("water"));
 
 
             //Here comes System.out tests

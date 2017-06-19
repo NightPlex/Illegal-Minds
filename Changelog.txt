@@ -18,3 +18,7 @@ Added few other tweaks
 Adding json reader and json info for drinks.
 Added DrinkTasks to handle drinking logic
 Lot of new features check git.
+
+19.06
+Completed making drinks
+Started drink selling logic
