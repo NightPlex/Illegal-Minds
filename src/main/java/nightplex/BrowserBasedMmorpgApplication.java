@@ -13,9 +13,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @SpringBootApplication
 @EnableScheduling // adding some interaction with schedule
 public class BrowserBasedMmorpgApplication {
@@ -49,11 +46,6 @@ public class BrowserBasedMmorpgApplication {
 
             UserData d = new UserData(56, 212000000, 27, 277, 2666);
             Barkeeping b = new Barkeeping(1, 0, 0, false, false, 30000);
-            Map<Integer, Integer> drinks = new HashMap<>();
-
-            drinks.put(1, 20);
-
-            b.setReadyDrinks(drinks);
 
             Account l = new Account("steven", d, b);
 
@@ -62,11 +54,6 @@ public class BrowserBasedMmorpgApplication {
             repou.save(new User("steven", "test", "USER"));
 
             Account account = repo.getByUsername("steven");
-
-            System.out.println(account.getBarkeeping().getReadyDrinks().get(1));
-
-
-            //Here comes System.out tests
 
 
         };

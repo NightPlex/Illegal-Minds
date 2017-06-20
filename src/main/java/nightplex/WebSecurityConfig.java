@@ -19,43 +19,37 @@ import nightplex.services.UserDetailServiceImpl;
 */
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
-	
-	@Autowired
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
     private UserDetailServiceImpl userDetailsService;
-	
-	// Declare and manipulate the permissions 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception { 
-		
-		http.authorizeRequests()
-		.antMatchers("/css/**", "/", "/fonts/**", "/icons/**", "/img/**", "/vendor/**","/js/**", "/public/**", "/register").permitAll() // Do i need to write this all ? Is there shorter way
-		.antMatchers("/admin/**").hasAuthority("ADMIN")
-		.anyRequest().authenticated()
-		.and()
-		.formLogin()
-			.loginPage("/").successForwardUrl("/game")
-			.permitAll()
-			.and()
-		.logout().logoutSuccessUrl("/")
-		.permitAll()
-		
-		
-		;
-		
-		
-		
-		
-	}
-	
-	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		
-		auth.userDetailsService(userDetailsService)
-		
-		; // This is just a test will be changed later
-		
-		
-	}
+
+    // Declare and manipulate the permissions
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+
+        http.authorizeRequests()
+                .antMatchers("/css/**", "/", "/fonts/**", "/icons/**", "/img/**", "/vendor/**", "/js/**", "/public/**", "/register").permitAll() // Do i need to write this all ? Is there shorter way
+                .antMatchers("/admin/**").hasAuthority("ADMIN")
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/").successForwardUrl("/game")
+                .permitAll()
+                .and()
+                .logout().logoutSuccessUrl("/")
+                .permitAll()
+        ;
+    }
+
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+
+        auth.userDetailsService(userDetailsService)
+
+        ; // This is just a test will be changed later
+
+
+    }
 
 }

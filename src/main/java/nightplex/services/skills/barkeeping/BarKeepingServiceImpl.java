@@ -97,17 +97,16 @@ public class BarKeepingServiceImpl implements BarKeepingService {
             account.getBarkeeping().setBarIsClosed(true);
 
             notificationService.addInfoMessage("Success", "You closed your bar");
-
+            accountInformationService.saveAccount(account);
             return true;
 
         } else {
 
             account.getBarkeeping().setBarIsClosed(false);
             notificationService.addInfoMessage("Success", "You opened your bar");
-
+            accountInformationService.saveAccount(account);
             return true;
 
         }
-
     }
 }

@@ -1,6 +1,19 @@
 {
   "data": [
     {
+      "id": 1337,
+      "drinkName": "test",
+      "experience": 1337,
+      "level" : 1337,
+      "material": [
+        {
+          "id": 1337,
+          "name": "test",
+          "amount": 1337
+        }
+      ]
+    },
+    {
       "id": 1,
       "drinkName": "Filtered Water",
       "experience": 4,

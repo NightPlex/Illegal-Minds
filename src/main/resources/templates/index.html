@@ -374,7 +374,7 @@ Below is the message system implementation:
 <ul
         th:with="notifyMessages=${session[T(nightplex.services.notification.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY]}"
 >
-    <li th:each="msg : ${notifyMessages}">
+    <li th:remove="tag" th:each="msg : ${notifyMessages}">
         <script th:inline="text">
             $(function () {
                 toastr.options = {
@@ -386,8 +386,7 @@ Below is the message system implementation:
                 };
 
                 function callMe() {
-                    toastr
-                        .[[${#strings.toLowerCase(msg.type)}]]('[[${msg.title}]]' + ' - ' + '[[${msg.text}]]');
+                    toastr.[[${#strings.toLowerCase(msg.type)}]]('[[${msg.title}]]' + ' - ' + '[[${msg.text}]]');
                 }
                 ;
                 callMe();
@@ -395,7 +394,7 @@ Below is the message system implementation:
         </script>
     </li>
     <span th:if="${notifyMessages}" th:remove="all"
-          th:text="${session.removeAttribute(
+          th:text="${session.remove(
           T(nightplex.services.notification.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY)}"></span>
 
 </ul>

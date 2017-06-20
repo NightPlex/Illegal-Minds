@@ -1,9 +1,7 @@
 package nightplex.model.skills.barkeeping;
 
 import nightplex.model.skills.Skill;
-import nightplex.model.template.skills.barkeeping.DrinkData;
 
-import javax.jws.WebParam;
 import javax.persistence.*;
 import java.util.Map;
 
@@ -47,7 +45,6 @@ public class Barkeeping extends Skill {
     private boolean barIsClosed; // false - closed, no customers. True: Open and ready to server
 
     //Product storage -- raw materials for making drinks.. Need to order them in order to make drinks.
-
     private int storageCapacity; // Maximum amount of raw materials that can be stored
 
     public int getBarkeepingExp() {
@@ -156,21 +153,32 @@ public class Barkeeping extends Skill {
     }
 
     public void addIngredient(String ingredient, int amount) {
-        Map<String, Integer> temp = getIngredients();
-        if(temp.get(ingredient) != null) {
-            temp.put(ingredient, temp.get(ingredient) + amount);
+        if(ingredients.get(ingredient) != null) {
+            ingredients.put(ingredient, ingredients.get(ingredient) + amount);
         } else {
-            temp.put(ingredient, amount);
+            ingredients.put(ingredient, amount);
         }
     }
 
+    /**
+     *
+     * Add ingredient to hashmap.
+     * */
     public boolean removeIngredient(String ingredient, int amount) {
-        Map<String, Integer> temp = getIngredients();
-        if(temp.get(ingredient) == null || temp.get(ingredient) - amount < 0) {
+        if(ingredients.get(ingredient) == null || ingredients.get(ingredient) - amount < 0) {
             return false;
         }
 
-        temp.put(ingredient, temp.get(ingredient) - amount);
+        ingredients.put(ingredient, ingredients.get(ingredient) - amount);
         return true;
+    }
+
+    //Check storage amount
+    public int storageAmount() {
+        int amount = 0;
+        for(String ingredient : ingredients.keySet()) {
+            amount += ingredients.get(ingredient);
+        }
+        return amount;
     }
 }

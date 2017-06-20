@@ -24,14 +24,14 @@ public class GameController {
 	@Autowired
 	private AccountRepository repo;
 	
-	@RequestMapping("/game/**")
+	@RequestMapping("/game")
 	public String gamePage(Model model) {
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		
 		model.addAttribute("userAccount", repo.getByUsername(auth.getName()));
 		
-		return "game/index";
+		return "game";
 		
 	}
 

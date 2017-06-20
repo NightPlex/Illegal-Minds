@@ -67,6 +67,7 @@ public class DrinkTasksTest {
         account = accountInformationService.getCurrentUserWithOutDb();
         assertThat(account.getBarkeeping().getIngredients().get("water")).isEqualTo(2);
         assertThat(account.getBarkeeping().getDrinks()).isEqualTo(1);
+        assertThat(account.getBarkeeping().storageAmount()).isEqualTo(2);
     }
 
 }
