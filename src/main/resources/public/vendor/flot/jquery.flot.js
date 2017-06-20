@@ -166,7 +166,7 @@ Licensed under the MIT license.
 		context.save();
 
 		// Scale the coordinate space to match the display density; so even though we
-		// may have twice as many pixels, we still want lines and util drawing to
+		// may have twice as many pixels, we still want lines and other drawing to
 		// appear at the same size; the extra pixels will just make them crisper.
 
 		context.scale(pixelRatio, pixelRatio);
@@ -1428,8 +1428,8 @@ Licensed under the MIT license.
             // find the bounding box of the axis by looking at label
             // widths/heights and ticks, make room by diminishing the
             // plotOffset; this first phase only looks at one
-            // dimension per axis, the util dimension depends on the
-            // util axes so will have to wait
+            // dimension per axis, the other dimension depends on the
+            // other axes so will have to wait
 
             var lw = axis.labelWidth,
                 lh = axis.labelHeight,
@@ -1736,7 +1736,7 @@ Licensed under the MIT license.
                 throw new Error("Time mode requires the flot.time plugin.");
             }
 
-            // Flot supports base-10 axes; any util mode else is handled by a plug-in,
+            // Flot supports base-10 axes; any other mode else is handled by a plug-in,
             // like flot.time.js.
 
             if (!axis.tickGenerator) {
@@ -2452,7 +2452,7 @@ Licensed under the MIT license.
                     ctx.lineTo(axisx.p2c(x1), axisy.p2c(y1));
                     ctx.lineTo(axisx.p2c(x2), axisy.p2c(y2));
 
-                    // fill the util rectangle if it's there
+                    // fill the other rectangle if it's there
                     if (x2 != x2old) {
                         ctx.lineTo(axisx.p2c(x2), axisy.p2c(y2));
                         ctx.lineTo(axisx.p2c(x2old), axisy.p2c(y2));
@@ -2879,7 +2879,7 @@ Licensed under the MIT license.
                     }
                 }
 
-                if (s.bars.show && !item) { // no util point can be nearby
+                if (s.bars.show && !item) { // no other point can be nearby
 
                     var barLeft, barRight;
 

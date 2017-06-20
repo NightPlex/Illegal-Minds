@@ -54,7 +54,7 @@ return $.widget("ui.mouse", {
 	},
 
 	// TODO: make sure destroying one instance of mouse doesn't mess with
-	// util instances of mouse
+	// other instances of mouse
 	_mouseDestroy: function() {
 		this.element.unbind("." + this.widgetName);
 		if ( this._mouseMoveDelegate ) {

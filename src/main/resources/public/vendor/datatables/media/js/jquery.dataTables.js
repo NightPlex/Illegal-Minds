@@ -147,7 +147,7 @@
 		return !isNaN(integer) && isFinite(s) ? integer : null;
 	};
 	
-	// Convert from a formatted number with characters util than `.` as the
+	// Convert from a formatted number with characters other than `.` as the
 	// decimal place, to a Javascript number
 	var _numToDecimal = function ( num, decimalPoint ) {
 		// Cache created regular expressions for speed as this function is called often
@@ -583,7 +583,7 @@
 			browser.barWidth = outer[0].offsetWidth - outer[0].clientWidth;
 	
 			// IE6/7 will oversize a width 100% element inside a scrolling element, to
-			// include the width of the scrollbar, while util browsers ensure the inner
+			// include the width of the scrollbar, while other browsers ensure the inner
 			// element is contained without forcing scrolling
 			browser.bScrollOversize = inner[0].offsetWidth === 100 && outer[0].clientWidth !== 100;
 	
@@ -2853,7 +2853,7 @@
 			.append( $('<label/>' ).append( str ) );
 	
 		var searchFn = function() {
-			/* Update all util filter input elements for the new display */
+			/* Update all other filter input elements for the new display */
 			var n = features.f;
 			var val = !this.value ? "" : this.value; // mental IE8 fix :-(
 	
@@ -4074,7 +4074,7 @@
 		if ( ! scrollY ) {
 			/* IE7< puts a vertical scrollbar in place (when it shouldn't be) due to subtracting
 			 * the scrollbar height from the visible display, rather than adding it on. We need to
-			 * set the height in order to sort this. Don't want to do it in any util browsers.
+			 * set the height in order to sort this. Don't want to do it in any other browsers.
 			 */
 			if ( ie67 ) {
 				divBodyStyle.height = _fnStringToCss( tableEl.offsetHeight+barWidth );
@@ -4314,7 +4314,7 @@
 			}
 	
 			// Get the width of each column in the constructed table - we need to
-			// know the inner width (so it can be assigned to the util table's
+			// know the inner width (so it can be assigned to the other table's
 			// cells) and the outer width so we can calculate the full width of the
 			// table. This is safe since DataTables requires a unique cell for each
 			// column, but if ever a header can span multiple columns, this will
@@ -5134,7 +5134,7 @@
 	
 	
 	/**
-	 * See if a property is defined on one object, if so assign it to the util object
+	 * See if a property is defined on one object, if so assign it to the other object
 	 *  @param {object} ret target object
 	 *  @param {object} src source object
 	 *  @param {string} name property
@@ -6204,7 +6204,7 @@
 				/* If the element we are initialising has the same ID as a table which was previously
 				 * initialised, but the table nodes don't match (from before) then we destroy the old
 				 * instance by simply deleting it. This is under the assumption that the table has been
-				 * destroyed by util methods. Anyone using non-id selectors will need to do this manually
+				 * destroyed by other methods. Anyone using non-id selectors will need to do this manually
 				 */
 				if ( s.sTableId == this.id )
 				{
@@ -9411,7 +9411,7 @@
 		 * row. We do this cache generation at the start of the sort in order that
 		 * the formatting of the sort data need be done only once for each cell
 		 * per sort. This array should not be read from or written to by anything
-		 * util than the master sorting methods.
+		 * other than the master sorting methods.
 		 *  @type array
 		 *  @default null
 		 *  @private
@@ -9722,7 +9722,7 @@
 	 * breaking backwards compatibility utterly with this change, the Hungarian
 	 * version is still, internally the primary interface, but is is not documented
 	 * - hence the @name tags in each doc comment. This allows a Javascript function
-	 * to create a map from Hungarian notation to camel case (going the util direction
+	 * to create a map from Hungarian notation to camel case (going the other direction
 	 * would require each property to be listed, which would at around 3K to the size
 	 * of DataTables, while this method is about a 0.5K hit.
 	 *
@@ -9908,7 +9908,7 @@
 		 * ----------
 		 *
 		 * As a function, making the Ajax call is left up to yourself allowing
-		 * complete control of the Ajax request. Indeed, if desired, a method util
+		 * complete control of the Ajax request. Indeed, if desired, a method other
 		 * than Ajax could be used to obtain the required data, such as Web storage
 		 * or an AIR database.
 		 *
@@ -10700,7 +10700,7 @@
 	
 		/**
 		 * Called at the very start of each table draw and can be used to cancel the
-		 * draw by returning false, any util return (including undefined) results in
+		 * draw by returning false, any other return (including undefined) results in
 		 * the full draw occurring).
 		 *  @type function
 		 *  @param {object} settings DataTables settings object
@@ -10957,7 +10957,7 @@
 		 * Callback which allows modification of the state to be saved. Called when the table
 		 * has changed state a new state save is required. This method allows modification of
 		 * the state saving object prior to actually doing the save, including addition or
-		 * util state properties or modification. Note that for plug-in authors, you should
+		 * other state properties or modification. Note that for plug-in authors, you should
 		 * use the `stateSaveParams` event to save parameters for a plug-in.
 		 *  @type function
 		 *  @param {object} settings DataTables settings object
@@ -11403,11 +11403,11 @@
 	
 	
 			/**
-			 * This decimal place operator is a little different from the util
+			 * This decimal place operator is a little different from the other
 			 * language options since DataTables doesn't output floating point
 			 * numbers, so it won't ever use this for display of a number. Rather,
 			 * what this parameter does is modify the sort methods of the table so
-			 * that numbers which are in a format which has a character util than
+			 * that numbers which are in a format which has a character other than
 			 * a period (`.`) as a decimal place will be sorted numerically.
 			 *
 			 * Note that numbers with different decimal places cannot be shown in
@@ -11639,7 +11639,7 @@
 		/**
 		 * This parameter allows you to have define the global filtering state at
 		 * initialisation time. As an object the `search` parameter must be
-		 * defined, but all util parameters are optional. When `regex` is true,
+		 * defined, but all other parameters are optional. When `regex` is true,
 		 * the search string will be treated as a regular expression, when false
 		 * (default) it will be treated as a straight string. When `smart`
 		 * DataTables will use it's smart filtering methods (to word match at
@@ -12185,7 +12185,7 @@
 		 *      function notation is recommended for use in `render` rather than
 		 *      `data` as it is much simpler to use as a renderer.
 		 * * `null` - use the original data source for the row rather than plucking
-		 *   data directly from it. This action has effects on two util
+		 *   data directly from it. This action has effects on two other
 		 *   initialisation options:
 		 *    * `defaultContent` - When null is given as the `data` option and
 		 *      `defaultContent` is specified for the column, the value defined by
@@ -13736,7 +13736,7 @@
 	DataTable.ext = _ext = {
 		/**
 		 * Buttons. For use with the Buttons extension for DataTables. This is
-		 * defined here so util extensions can define buttons regardless of load
+		 * defined here so other extensions can define buttons regardless of load
 		 * order. It is _not_ used by DataTables core.
 		 *
 		 *  @type object
@@ -13910,7 +13910,7 @@
 		 * Internal functions, exposed for used in plug-ins.
 		 * 
 		 * Please note that you should not need to use the internal methods for
-		 * anything util than a plug-in (and even then, try to avoid if possible).
+		 * anything other than a plug-in (and even then, try to avoid if possible).
 		 * The internal function may change between releases.
 		 *
 		 *  @type object
@@ -14064,7 +14064,7 @@
 			 * Each function is expected to return:
 			 *
 			 * * `{string|null}` Data type detected, or null if unknown (and thus
-			 *   pass it on to the util type detection functions.
+			 *   pass it on to the other type detection functions.
 			 *
 			 *  @type array
 			 *
@@ -14641,7 +14641,7 @@
 			return -Infinity;
 		}
 	
-		// If a decimal place util than `.` is used, it needs to be given to the
+		// If a decimal place other than `.` is used, it needs to be given to the
 		// function so we can detect it and replace with a `.` which is the only
 		// decimal place Javascript recognises - it is not locale aware.
 		if ( decimalPlace ) {
@@ -15096,7 +15096,7 @@
 	/**
 	 * State save event, fired when the table has changed state a new state save
 	 * is required. This event allows modification of the state saving object
-	 * prior to actually doing the save, including addition or util state
+	 * prior to actually doing the save, including addition or other state
 	 * properties (for plug-ins) or modification of a DataTables core property.
 	 *  @name DataTable#stateSaveParams.dt
 	 *  @event

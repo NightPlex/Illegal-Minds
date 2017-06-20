@@ -73,7 +73,7 @@ $.widget( "ui.autocomplete", {
 			// Inputs are always single-line, even if inside a contentEditable element
 			// IE also treats inputs as contentEditable
 			isInput ? false :
-			// All util element types are determined by whether or not they're contentEditable
+			// All other element types are determined by whether or not they're contentEditable
 			this.element.prop( "isContentEditable" );
 
 		this.valueMethod = this.element[ isTextarea || isInput ? "val" : "text" ];

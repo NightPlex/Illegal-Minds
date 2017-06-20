@@ -130,7 +130,7 @@ myDoughnutChart.segments[1].value = 10;
 // Would update the first dataset's value of 'Green' to be 10
 myDoughnutChart.update();
 // Calling update now animates the circumference of the segment 'Green' from 50 to 10.
-util
+// and transitions other segment widths
 ```
 
 #### .addData( segmentData, index )

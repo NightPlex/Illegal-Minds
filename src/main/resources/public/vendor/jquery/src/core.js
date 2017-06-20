@@ -447,7 +447,7 @@ jQuery.extend( {
 
 	now: Date.now,
 
-	// jQuery.support is not used in Core but util projects attach their
+	// jQuery.support is not used in Core but other projects attach their
 	// properties to it so it needs to exist.
 	support: support
 } );

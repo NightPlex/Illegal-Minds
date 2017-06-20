@@ -1076,7 +1076,7 @@ Applied as jQuery method.
         /**
         Shows container with form
         @method show()
-        @param {boolean} closeAll Whether to close all util editable containers when showing this one. Default true.
+        @param {boolean} closeAll Whether to close all other editable containers when showing this one. Default true.
         **/
         /* Note: poshytip owerwrites this method totally! */          
         show: function (closeAll) {
@@ -1172,7 +1172,7 @@ Applied as jQuery method.
         /**
         Toggles container visibility (show / hide)
         @method toggle()
-        @param {boolean} closeAll Whether to close all util editable containers when showing this one. Default true.
+        @param {boolean} closeAll Whether to close all other editable containers when showing this one. Default true.
         **/          
         toggle: function(closeAll) {
             if(this.container() && this.tip() && this.tip().is(':visible')) {
@@ -1257,7 +1257,7 @@ Applied as jQuery method.
         }, 
         
         /*
-        Closes util containers except one related to passed element. 
+        Closes other containers except one related to passed element. 
         Other containers can be cancelled or submitted (depends on onblur option)
         */
         closeOthers: function(element) {
@@ -1542,7 +1542,7 @@ Makes editable any HTML element on the page. Applied as jQuery method.
                         //for hover only show container
                         this.show();
                     } else {
-                        //when toggle='click' we should not close all util containers as they will be closed automatically in document click listener
+                        //when toggle='click' we should not close all other containers as they will be closed automatically in document click listener
                         var closeAll = (this.options.toggle !== 'click');
                         this.toggle(closeAll);
                     }
@@ -1777,7 +1777,7 @@ Makes editable any HTML element on the page. Applied as jQuery method.
         /**
         Shows container with form
         @method show()
-        @param {boolean} closeAll Whether to close all util editable containers when showing this one. Default true.
+        @param {boolean} closeAll Whether to close all other editable containers when showing this one. Default true.
         **/  
         show: function (closeAll) {
             if(this.options.disabled) {
@@ -1815,7 +1815,7 @@ Makes editable any HTML element on the page. Applied as jQuery method.
         /**
         Toggles container visibility (show / hide)
         @method toggle()
-        @param {boolean} closeAll Whether to close all util editable containers when showing this one. Default true.
+        @param {boolean} closeAll Whether to close all other editable containers when showing this one. Default true.
         **/  
         toggle: function(closeAll) {
             if(this.container && this.container.tip().is(':visible')) {
@@ -2672,7 +2672,7 @@ List - abstract class for inputs that have source option loaded from js array or
                             if(cache) {
                                 //store result in cache
                                 cache.sourceData = this.sourceData;
-                                //run success callbacks for util fields waiting for this source
+                                //run success callbacks for other fields waiting for this source
                                 $.each(cache.callbacks, function () { this.call(); }); 
                             }
                             this.doPrepend();
@@ -2680,7 +2680,7 @@ List - abstract class for inputs that have source option loaded from js array or
                         } else {
                             error.call(this);
                             if(cache) {
-                                //run error callbacks for util fields waiting for this source
+                                //run error callbacks for other fields waiting for this source
                                 $.each(cache.err_callbacks, function () { this.call(); }); 
                             }
                         }
@@ -2689,7 +2689,7 @@ List - abstract class for inputs that have source option loaded from js array or
                         error.call(this);
                         if(cache) {
                              cache.loading = false;
-                             //run error callbacks for util fields
+                             //run error callbacks for other fields
                              $.each(cache.err_callbacks, function () { this.call(); }); 
                         }
                     }, this)
@@ -6203,7 +6203,7 @@ $(function(){
     
     //store bootstrap-datepicker as bdateicker to exclude conflict with jQuery UI one
     $.fn.bdatepicker = $.fn.datepicker.noConflict();
-    if(!$.fn.datepicker) { //if there were no util datepickers, keep also original name
+    if(!$.fn.datepicker) { //if there were no other datepickers, keep also original name
         $.fn.datepicker = $.fn.bdatepicker;    
     }    
     

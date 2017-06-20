@@ -156,5 +156,5 @@ Calling `removeData()` on your Chart instance will remove the first value for al
 
 ```javascript
 myLineChart.removeData();
-util
+// The chart will remove the first point and animate other points into place
 ```

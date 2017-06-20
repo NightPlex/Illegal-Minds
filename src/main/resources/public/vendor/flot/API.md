@@ -982,7 +982,7 @@ $.plot($("#placeholder"), [ d ], { grid: { clickable: true } });
 
 $("#placeholder").bind("plotclick", function (event, pos, item) {
     alert("You clicked at " + pos.x + ", " + pos.y);
-    util
+    // axis coordinates for other axes, if present, are in pos.x2, pos.x3, ...
     // if you need global screen coordinates, they are pos.pageX, pos.pageY
 
     if (item) {
