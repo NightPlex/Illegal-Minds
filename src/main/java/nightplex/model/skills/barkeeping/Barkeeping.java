@@ -168,7 +168,6 @@ public class Barkeeping extends Skill {
         if(ingredients.get(ingredient) == null || ingredients.get(ingredient) - amount < 0) {
             return false;
         }
-
         ingredients.put(ingredient, ingredients.get(ingredient) - amount);
         return true;
     }
@@ -180,5 +179,20 @@ public class Barkeeping extends Skill {
             amount += ingredients.get(ingredient);
         }
         return amount;
+    }
+
+    public void addDrinkToStorage(int id, int amount) {
+        if(readyDrinks.get(id) != null) {
+            readyDrinks.put(id, amount + readyDrinks.get(id));
+            return;
+        }
+        readyDrinks.put(id, amount);
+    }
+    public boolean removeDrinkFromStorage(int id, int amount) {
+        if(readyDrinks.get(id) != null && readyDrinks.get(id) - amount <=0) {
+            readyDrinks.put(id, amount - readyDrinks.get(id));
+            return true;
+        }
+        return false;
     }
 }

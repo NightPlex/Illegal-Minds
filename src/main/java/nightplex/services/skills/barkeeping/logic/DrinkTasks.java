@@ -37,6 +37,7 @@ public class DrinkTasks {
             }
         }
         account.getBarkeeping().addExp(drinkData.getExperience());
+        account.getBarkeeping().getReadyDrinks().put(drinkData.getId(), 1);
         account.getBarkeeping().setDrinks(account.getBarkeeping().getDrinks() + 1);
         return true;
     }
@@ -56,9 +57,4 @@ public class DrinkTasks {
         }
     }
 
-    public static void addDrink(int id, Account account) {
-        switch (id) {
-            case 1:
-        }
-    }
 }

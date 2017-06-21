@@ -7,7 +7,6 @@
       "level" : 1337,
       "material": [
         {
-          "id": 1337,
           "name": "test",
           "amount": 1337
         }
@@ -20,7 +19,6 @@
       "level" : 1,
       "material": [
         {
-          "id": 1,
           "name": "water",
           "amount": 1
         }
@@ -33,12 +31,10 @@
       "level" : 7,
       "material": [
         {
-          "id": 1,
           "name": "Water",
           "amount": 1
         },
         {
-          "id": 2,
           "name": "Raw Milk",
           "amount": 1
         }
@@ -50,7 +46,6 @@
       "experience": 4,
       "material": [
         {
-          "id": 1,
           "name": "water",
           "amount": 1
         }
