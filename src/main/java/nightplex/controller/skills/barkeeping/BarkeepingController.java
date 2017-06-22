@@ -1,9 +1,10 @@
 package nightplex.controller.skills.barkeeping;
 
+import nightplex.model.Account;
 import nightplex.model.template.skills.barkeeping.DrinkData;
 import nightplex.model.template.skills.barkeeping.DrinkSelected;
 import nightplex.services.GeneralService;
-import nightplex.services.repository.AccountRepository;
+import nightplex.services.account.AccountInformationService;
 import nightplex.services.skills.barkeeping.BarKeepingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,11 +17,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.LinkedList;
 import java.util.List;
 
-@Controller
+@Controller("/api/barkeeping")
 public class BarkeepingController {
 
     @Autowired
-    private AccountRepository repo;
+    private AccountInformationService accountInformationService;
 
     @Autowired
     private BarKeepingService barKeepingService;
@@ -28,10 +29,15 @@ public class BarkeepingController {
     @Autowired
     private GeneralService generalService;
 
-    @RequestMapping(value = "/game/tavern")
+    @ModelAttribute("userAccount")
+    public Account getAccount() {
+        return accountInformationService.getCurrentAccount();
+    }
+
+    @RequestMapping(value = "/tavern")
     public String barkeepingTavern(Model model) {
 
-        model.addAttribute("userAccount", repo.getById(1L));
+        //model.addAttribute("userAccount", repo.getById(1L));
 
         System.out.println(barKeepingService.buyBar());
 
@@ -39,17 +45,15 @@ public class BarkeepingController {
 
     }
 
-    @RequestMapping(value = "/game/toggle", method = RequestMethod.POST)
+    @RequestMapping(value = "/tavern/toggle", method = RequestMethod.POST)
     public String toggleBar(Model model) {
         barKeepingService.toggleBar();
-        System.out.println("Toggled: " + repo.getById(1L).getBarkeeping().isBarIsClosed());
-        model.addAttribute("userAccount", repo.getById(1L));
         return "game/barkeeping";
     }
 
     @RequestMapping(value = "/tavern/kitchen")
     public String barkeepingMainPage(Model model) {
-        model.addAttribute("userAccount", repo.getById(1L));
+       // model.addAttribute("userAccount", repo.getById(1L));
         List<DrinkData> testDrinks = new LinkedList<>();
         for(int id : generalService.getDrinks().keySet()) {
             testDrinks.add(generalService.getDrink(id));
@@ -68,7 +72,7 @@ public class BarkeepingController {
             return "index";
         }
         System.out.println(drinkSelected.getDrinkId());
-        model.addAttribute("userAccount", repo.getById(1L));
+        //model.addAttribute("userAccount", repo.getById(1L));
         barKeepingService.makeDrink(drinkSelected.getDrinkId());
         return "game/barkeeping";
 

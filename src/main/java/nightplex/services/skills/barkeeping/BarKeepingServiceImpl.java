@@ -88,7 +88,7 @@ public class BarKeepingServiceImpl implements BarKeepingService {
 
 
     @Override
-    public boolean toggleBar() {
+    public void toggleBar() {
 
         Account account = accountInformationService.getCurrentAccount();
 
@@ -98,14 +98,12 @@ public class BarKeepingServiceImpl implements BarKeepingService {
 
             notificationService.addInfoMessage("Success", "You closed your bar");
             accountInformationService.saveAccount(account);
-            return true;
 
         } else {
 
             account.getBarkeeping().setBarIsClosed(false);
             notificationService.addInfoMessage("Success", "You opened your bar");
             accountInformationService.saveAccount(account);
-            return true;
 
         }
     }
