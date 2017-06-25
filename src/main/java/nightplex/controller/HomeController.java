@@ -1,9 +1,8 @@
 package nightplex.controller;
 
 import nightplex.model.template.RegisterForm;
-import nightplex.model.User;
+import nightplex.services.account.AccountInformationService;
 import nightplex.services.notification.NotificationService;
-import nightplex.services.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -18,7 +17,6 @@ import javax.validation.Valid;
  * 
  * */
 
-
 @Controller
 public class HomeController {
 
@@ -26,8 +24,7 @@ public class HomeController {
     private NotificationService nService;
 
     @Autowired
-    private UserRepository userRepo;
-
+    private AccountInformationService accountInformationService;
 
     @RequestMapping("/")
     public String landingPage(RegisterForm registerForm) {
@@ -36,10 +33,9 @@ public class HomeController {
 
     }
 
-
     @RequestMapping("/login")
     public String login() {
-
+        System.out.println("test");
         return "index";
 
     }
@@ -51,28 +47,20 @@ public class HomeController {
         if (result.hasErrors()) {
 
             nService.addErrorMessage("Error", "Check your registration form");
-
             return "index";
-
         }
-
         // check if the password and email are the same(type twice)
         if (registerForm.getPassword().equals(registerForm.getAgainPassword()) || registerForm.getEmail().equals(registerForm.getAgainEmail())) {
 
-            System.out.println(registerForm.toString());
-
-            userRepo.save(new User(registerForm.getUsername(), registerForm.getPassword(), "USER"));
+            accountInformationService.registerNewAccount(registerForm.getUsername(), registerForm.getPassword(), registerForm.getEmail());
             nService.addSuccessMessage("Congratz", "You have successfully registered as member, you may log in!");
             return "redirect:/";
 
         } else {
-
             nService.addErrorMessage("Error", "Email or password does not match");
             return "index";
 
-
         }
-
 
     }
 

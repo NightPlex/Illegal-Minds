@@ -213,22 +213,22 @@
             <li><p>
                 <span class="nav-label">Barkeeping: </span><span
                     class="label label-warning pull-right user-data-numbers"
-                    th:text="${userAccount.userData.fame}">NEW</span>
+                    th:text="${userAccount.barkeeping.getLevel()}">NEW</span>
             </p></li>
             <li><p>
                 <span class="nav-label">Mining: </span><span
                     class="label label-warning pull-right user-data-numbers"
-                    th:text="${userAccount.userData.fame}">NEW</span>
+                    th:text="${userAccount.barkeeping.getLevel()}">NEW</span>
             </p></li>
             <li><p>
                 <span class="nav-label">Cooking: </span><span
                     class="label label-warning pull-right user-data-numbers"
-                    th:text="${userAccount.userData.fame}">NEW</span>
+                    th:text="${userAccount.barkeeping.getLevel()}">NEW</span>
             </p></li>
             <li><p>
                 <span class="nav-label">Endurance: </span><span
                     class="label label-warning pull-right user-data-numbers"
-                    th:text="${userAccount.userData.fame}">NEW</span>
+                    th:text="${userAccount.barkeeping.getLevel()}">NEW</span>
             </p></li>
             <li><p>
                 <span class="nav-label"></span>
@@ -246,13 +246,18 @@
             <li><p>
                 <span class="nav-label">Chips: </span><span
                     class="label label-warning pull-right user-data-numbers"
-                    th:text="${userAccount.userData.fame}">NEW</span>
+                    th:text="${userAccount.userData.chips}">NEW</span>
             </p></li>
 
             <li><p>
                 <span class="nav-label">Credits: </span><span
                     class="label label-warning pull-right user-data-numbers"
-                    th:text="${userAccount.userData.fame}">NEW</span>
+                    th:text="${userAccount.userData.credits}">NEW</span>
+            </p></li>
+            <li><p>
+                <span class="nav-label">Drinks: </span><span
+                    class="label label-warning pull-right user-data-numbers"
+                    th:text="${userAccount.getBarkeeping().getDrinks()}">NEW</span>
             </p></li>
             <li><a href="#"><span class="nav-label">Interface</span><span
                     class="fa arrow"></span> </a>
@@ -296,11 +301,11 @@
                     <div class="col-md-4">
 
                         <ul class="list-group">
-                            <a href="index.html">
+                            <a href="index.html" th:href="@{/bank/}">
                                 <li class="list-group-item">Bank</li>
                             </a>
                             <li class="list-group-item">Sports</li>
-                            <a href="#" th:href="@{/game/tavern}">
+                            <a href="#" th:href="@{/tavern/}">
                                 <li
                                         class="list-group-item">Barkeeping
                                 </li>

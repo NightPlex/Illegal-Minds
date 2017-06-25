@@ -1,5 +1,8 @@
 package nightplex.controller;
 
+import nightplex.model.Account;
+import nightplex.services.account.AccountInformationService;
+import nightplex.services.notification.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,19 +23,28 @@ import nightplex.services.repository.AccountRepository;
 
 @Controller
 public class GameController {
-	
-	@Autowired
-	private AccountRepository repo;
-	
-	@RequestMapping("/game")
-	public String gamePage(Model model) {
-		
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		
-		model.addAttribute("userAccount", repo.getByUsername(auth.getName()));
-		
-		return "game";
-		
-	}
+
+    @Autowired
+    private AccountInformationService accountInformationService;
+
+    @Autowired
+    private NotificationService notificationService;
+
+    @RequestMapping("/game")
+    public String gamePage(Model model) {
+
+        Account account = accountInformationService.getCurrentAccount();
+
+        model.addAttribute("userAccount", account);
+
+        if (!account.getBarkeeping().isBarIsClosed()) {
+            if (account.getBarkeeping().getDrinks() <= 0) {
+                notificationService.addErrorMessage("Lack of drinks", "Close bar or make more drinks, otherwise reputation will fall!");
+            }
+        }
+
+        return "game";
+
+    }
 
 }

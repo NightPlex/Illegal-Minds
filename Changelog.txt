@@ -23,3 +23,12 @@ Lot of new features check git.
 Completed making drinks
 Started drink selling logic
 Changed the way that ingredients and drinks work.
+
+24.06
+Added bank system
+Finished making drinks and so forth
+Added bunch of the logic
+
+25.06
+Added async barkeeping logic
+Earn money by making drinks

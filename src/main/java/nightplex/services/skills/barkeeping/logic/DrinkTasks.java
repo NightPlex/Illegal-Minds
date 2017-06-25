@@ -3,6 +3,7 @@ package nightplex.services.skills.barkeeping.logic;
 import nightplex.model.Account;
 import nightplex.model.template.skills.barkeeping.DrinkData;
 import nightplex.model.template.skills.barkeeping.Material;
+import nightplex.util.StringUtils;
 
 /**
  * Created by steven.tihomirov on 16.6.2017.
@@ -25,21 +26,26 @@ public class DrinkTasks {
         }
     }
 
-    public static boolean makeDrink(DrinkData drinkData, Account account) {
+    /**
+     *
+     * Returns array of string with the title being at 0 position and text at  1
+     *
+     * */
+    public static String[] makeDrink(DrinkData drinkData, Account account) {
         //Has level required?
         if (!hasLevel(account, drinkData.getLevel())) {
-            return false;
+            return new String[]{"Low level", "You need at least barkeeping level of " + drinkData.getLevel() + " to make this drink"};
         }
         //First check that there are ingredients
         for (Material material : drinkData.getMaterial()) {
             if (!removeRawMaterial(account, material.getName(), material.getAmount())) {
-              return false;
+              return new String[]{"Lack of material", "You are missing " + material.getAmount() + "x " + StringUtils.convertFromIdToName(material.getName())};
+
             }
         }
         account.getBarkeeping().addExp(drinkData.getExperience());
-        account.getBarkeeping().getReadyDrinks().put(drinkData.getId(), 1);
-        account.getBarkeeping().setDrinks(account.getBarkeeping().getDrinks() + 1);
-        return true;
+        account.getBarkeeping().addDrinkToStorage(drinkData.getId(), 1);
+        return null;
     }
 
     //Change raw material

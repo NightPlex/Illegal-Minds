@@ -1,6 +1,7 @@
 package nightplex.services;
 
 
+import nightplex.ServerCONF;
 import nightplex.model.template.skills.barkeeping.DrinkData;
 import nightplex.util.json.JsonDrinkDataParser;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,7 @@ public class GeneralService {
         drinks = new HashMap<>();
         if (drinkData != null) {
             for (DrinkData d : drinkData) {
+                d.setExperience(d.getExperience() * ServerCONF.EXP_MULTIPLIER);
                 drinks.put(d.getId(), d);
             }
         }

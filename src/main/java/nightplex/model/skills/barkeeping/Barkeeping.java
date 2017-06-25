@@ -1,6 +1,7 @@
 package nightplex.model.skills.barkeeping;
 
 import nightplex.model.skills.Skill;
+import nightplex.util.ExperienceHandler;
 
 import javax.persistence.*;
 import java.util.Map;
@@ -182,6 +183,7 @@ public class Barkeeping extends Skill {
     }
 
     public void addDrinkToStorage(int id, int amount) {
+        drinks +=amount;
         if(readyDrinks.get(id) != null) {
             readyDrinks.put(id, amount + readyDrinks.get(id));
             return;
@@ -189,10 +191,23 @@ public class Barkeeping extends Skill {
         readyDrinks.put(id, amount);
     }
     public boolean removeDrinkFromStorage(int id, int amount) {
-        if(readyDrinks.get(id) != null && readyDrinks.get(id) - amount <=0) {
+        drinks -=amount;
+        if(readyDrinks.get(id) != null && readyDrinks.get(id) - amount >=0) {
             readyDrinks.put(id, amount - readyDrinks.get(id));
             return true;
         }
         return false;
     }
+
+    public int getExperienceToNextLevel() {
+        return ExperienceHandler.expRequiredUntilNextLevel(getExp(), getLevel());
+    }
+
+    public void removeReputation(int amount) {
+        if(reputation - amount < 5000) {
+            return;
+        }
+        reputation -= amount;
+    }
+
 }

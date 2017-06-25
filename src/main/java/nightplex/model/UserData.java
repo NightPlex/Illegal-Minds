@@ -15,97 +15,90 @@ import javax.persistence.Id;
  * */
 
 
-
 @Entity
 public class UserData {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", nullable = false, updatable = false)
-	private Long id;
 
-	private int credits;
-	
-	private int money;
-	
-	private int moneyInBank;
-	
-	private int chips;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false, updatable = false)
+    private Long id;
 
-	private int fame;
-	
-	
-	public Long getId() {
-		return id;
-	}
+    private int credits;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    private int money;
 
-	
-	
+    private int moneyInBank;
 
-	public int getCredits() {
-		return credits;
-	}
+    private int chips;
 
-	public void setCredits(int credits) {
-		this.credits = credits;
-	}
+    private int fame;
 
-	public int getMoney() {
-		return money;
-	}
 
-	public void setMoney(int money) {
-		this.money = money;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public int getMoneyInBank() {
-		return moneyInBank;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setMoneyInBank(int moneyInBank) {
-		this.moneyInBank = moneyInBank;
-	}
 
-	public int getChips() {
-		return chips;
-	}
+    public int getCredits() {
+        return credits;
+    }
 
-	public void setChips(int chips) {
-		this.chips = chips;
-	}
+    public void setCredits(int credits) {
+        this.credits = credits;
+    }
 
-	public int getFame() {
-		return fame;
-	}
+    public int getMoney() {
+        return money;
+    }
 
-	public void setFame(int fame) {
-		this.fame = fame;
-	}
+    public void setMoney(int money) {
+        this.money = money;
+    }
 
-	
-	
-	public UserData(int credits, int money, int moneyInBank, int chips, int fame) {
-		super();
-		this.credits = credits;
-		this.money = money;
-		this.moneyInBank = moneyInBank;
-		this.chips = chips;
-		this.fame = fame;
-	}
+    public int getMoneyInBank() {
+        return moneyInBank;
+    }
 
-	public UserData() {
-		
-	}
-	
-	
-	
-	
-	
-	
-	
+    public void setMoneyInBank(int moneyInBank) {
+        this.moneyInBank = moneyInBank;
+    }
+
+    public int getChips() {
+        return chips;
+    }
+
+    public void setChips(int chips) {
+        this.chips = chips;
+    }
+
+    public int getFame() {
+        return fame;
+    }
+
+    public void setFame(int fame) {
+        this.fame = fame;
+    }
+
+
+    public UserData(int credits, int money, int moneyInBank, int chips, int fame) {
+        super();
+        this.credits = credits;
+        this.money = money;
+        this.moneyInBank = moneyInBank;
+        this.chips = chips;
+        this.fame = fame;
+    }
+
+    public UserData() {
+
+    }
+
+    public void addMoney(int amount) {
+        setMoney(getMoney() + amount);
+    }
 
 }

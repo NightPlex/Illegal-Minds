@@ -2,12 +2,19 @@ package nightplex.services.skills.barkeeping;
 
 import nightplex.ServerCONF;
 import nightplex.model.Account;
+import nightplex.model.template.skills.barkeeping.DrinkData;
+import nightplex.model.template.skills.barkeeping.DrinkSelected;
+import nightplex.model.template.skills.barkeeping.Material;
 import nightplex.services.GeneralService;
 import nightplex.services.account.AccountInformationService;
 import nightplex.services.notification.NotificationService;
 import nightplex.services.skills.barkeeping.logic.DrinkTasks;
+import nightplex.services.skills.barkeeping.logic.ReadyDrinks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Map;
 
 /*
  * "Busines logic" for barkeeping skill
@@ -77,11 +84,14 @@ public class BarKeepingServiceImpl implements BarKeepingService {
 
         Account account = accountInformationService.getCurrentAccount();
 
-        if (DrinkTasks.makeDrink(generalService.getDrink(id), account)) {
+        String[] response = DrinkTasks.makeDrink(generalService.getDrink(id), account);
+
+        if (response == null) {
             accountInformationService.saveAccount(account);
             return true;
         } else {
-            notificationService.addErrorMessage("No material", "Make sure you have all the necessary material!");
+            //Returned array of string will populate the error messages
+            notificationService.addErrorMessage(response[0], response[1]);
             return false;
         }
     }
@@ -106,5 +116,39 @@ public class BarKeepingServiceImpl implements BarKeepingService {
             accountInformationService.saveAccount(account);
 
         }
+    }
+
+    @Override
+    public void sellDrinks(Account account) {
+        //Get the amount of drinks that can be sold and try to sell them.
+        int sellAmount = ReadyDrinks.amountToSell(account);
+        //Fetch all accounts drinks
+        Map<Integer, Integer> readyDrinks = account.getBarkeeping().getReadyDrinks();
+        //Iterate
+        for (int integer : readyDrinks.keySet()) {
+            //Get drink data for corresponding drink
+            DrinkData drinkData = generalService.getDrink(integer);
+            //If amount cant be sold sell it.
+            if (readyDrinks.get(integer) - sellAmount >= 0) {
+                //Add money based on level * amount
+                account.getUserData().addMoney(sellAmount * ReadyDrinks.moneyRewarded(drinkData.getLevel()));
+                //Add reputation
+                account.getBarkeeping().setReputation(account.getBarkeeping().getReputation() + sellAmount * ReadyDrinks.reputationRewarded(drinkData.getLevel()));
+                //remove the ingredients from map
+                account.getBarkeeping().removeDrinkFromStorage(integer, sellAmount);
+                break;
+            } else {
+                if (sellAmount - readyDrinks.get(integer) > 0) {
+                    account.getUserData().addMoney(readyDrinks.get(integer) * ReadyDrinks.moneyRewarded(drinkData.getLevel()));
+                    //Add reputation
+                    account.getBarkeeping().setReputation(account.getBarkeeping().getReputation() + readyDrinks.get(integer) * ReadyDrinks.reputationRewarded(drinkData.getLevel()));
+                    //remove the ingredients from map
+                    account.getBarkeeping().removeDrinkFromStorage(drinkData.getId(), readyDrinks.get(integer));
+                    sellAmount -= readyDrinks.get(integer);
+                }
+
+            }
+        }
+        account.getBarkeeping().removeReputation(sellAmount);
     }
 }

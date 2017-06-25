@@ -1,5 +1,7 @@
 package nightplex.util;
 
+import nightplex.model.template.skills.barkeeping.DrinkSelected;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,14 +11,8 @@ import java.util.Map;
 public class test {
     public static void main(String args[]) {
 
-        Map<String, Integer> maps = new HashMap<>();
-
-        maps.put("tea" , 12);
-        maps.put("lego", 56);
-        print(maps);
-        maps.put("tea",32);
-        print(maps);
-        System.out.println(maps.get("ll"));
+        DrinkSelected drinkSelected = new DrinkSelected();
+        System.out.println(drinkSelected.getDrinkId());
 
     }
 

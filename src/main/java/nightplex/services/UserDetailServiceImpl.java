@@ -1,5 +1,7 @@
 package nightplex.services;
 
+import nightplex.model.Account;
+import nightplex.services.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -7,8 +9,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import nightplex.model.User;
-import nightplex.services.repository.UserRepository;
 
 
 /*
@@ -22,32 +22,28 @@ import nightplex.services.repository.UserRepository;
  * 
  * */
 
-
 @Service
 public class UserDetailServiceImpl implements UserDetailsService{
 	
 	// Repository for all users
-	private final UserRepository repository;
+	private final AccountRepository accountRepository;
 
 	
 	//Provide repository automatically
 	@Autowired
-	public UserDetailServiceImpl(UserRepository userRepository) {
-		this.repository = userRepository;
+	public UserDetailServiceImpl(AccountRepository accountRepository) {
+		this.accountRepository = accountRepository;
 	}
 
 	
 	//Own auth system
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User curruser = repository.findByUsername(username); // Find username with called parameter
+		Account curruser = accountRepository.getByUsername(username); // Find username with called parameter
 		
 		UserDetails user = new org.springframework.security.core.userdetails.User(username, curruser.getPassword(), 
         		AuthorityUtils.createAuthorityList(curruser.getRole())); //create a new authority rule for given user
-		
-		
-		
-			
+
 		return user;
 	}
 

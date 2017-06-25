@@ -31,22 +31,26 @@
       "level" : 7,
       "material": [
         {
-          "name": "Water",
+          "name": "water",
           "amount": 1
         },
         {
-          "name": "Raw Milk",
+          "name": "raw_milk",
           "amount": 1
         }
       ]
     },
     {
       "id": 3,
-      "drinkName": "Filtered Water",
-      "experience": 4,
+      "drinkName": "Black Tea",
+      "experience": 24,
       "material": [
         {
           "name": "water",
+          "amount": 1
+        },
+        {
+          "name": "tea_tree_leaves",
           "amount": 1
         }
       ]

@@ -1,10 +1,15 @@
 package nightplex.services.account;
 
 import nightplex.model.Account;
+import nightplex.model.UserData;
+import nightplex.model.skills.barkeeping.Barkeeping;
 import nightplex.services.repository.AccountRepository;
+import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by steven.tihomirov on 16.6.2017.
@@ -17,8 +22,8 @@ public class AccountInformationService {
     private AccountRepository accountRepository;
 
     public Account getCurrentAccount() {
-        return getCurrentUserWithOutDb();
-        //return accountRepository.getByUsername(getCurrentUsername());
+        //return getCurrentUserWithOutDb();
+        return accountRepository.getByUsername(getCurrentUsername());
     }
 
     public void saveAccount(Account account) {
@@ -33,6 +38,17 @@ public class AccountInformationService {
 
     public Account getCurrentUserWithOutDb() {
         return accountRepository.getById(1L);
+    }
+
+    public List<Account> getAll() {
+        return Lists.newArrayList(accountRepository.findAll());
+    }
+
+    public void registerNewAccount(String username, String password, String email) {
+        UserData d = new UserData(0, 10000, 0, 0, 0);
+        Barkeeping b = new Barkeeping(1, 0, 5000, false, true, 30000);
+        Account l = new Account(username, password, email, "USER", d, b);
+        accountRepository.save(l);
     }
 }
 

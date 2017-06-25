@@ -20,10 +20,24 @@ public class BankService {
 
     public void withdrawMoney(int amount) {
         Account account = accountInformationService.getCurrentAccount();
-        if(BankLogic.performAddMoneyToBankTransaction(account, amount)) {
-            notificationService.addInfoMessage("Sucess", "Added " + account + " to your bank!");
+        String[] outcome = BankLogic.performAddMoneyToBankTransaction(account, amount);
+        if(outcome == null) {
+            notificationService.addInfoMessage("Success", "You take " + amount + " from your bank!");
+            accountInformationService.saveAccount(account);
         } else {
-            notificationService.addErrorMessage("Error", "You do not have enough money.");
+            notificationService.addErrorMessage(outcome[0] , outcome[1]);
         }
+    }
+
+    public void depositMoney(int amount) {
+        Account account = accountInformationService.getCurrentAccount();
+        String[] outcome = BankLogic.performWithdrawMoneyToBankTransaction(account, amount);
+        if(outcome == null) {
+            notificationService.addInfoMessage("Success", "You put " + amount + " to your bank!");
+            accountInformationService.saveAccount(account);
+            return;
+        }
+        notificationService.addErrorMessage(outcome[0] , outcome[1]);
+
     }
 }
