@@ -4,17 +4,20 @@ package nightplex.model.template.skills.barkeeping;
  * Created by steven.tihomirov on 16.6.2017.
  */
 public class Material {
-    private int id;
     private String name;
+
     private int amount;
 
     public Material() {
     }
 
-    public Material(int id, String name, int amount) {
-        this.id = id;
+    public Material(String name, int amount) {
         this.name = name;
         this.amount = amount;
+    }
+
+    public Material(String name) {
+        this.name = name;
     }
 
     public int getAmount() {
@@ -23,14 +26,6 @@ public class Material {
 
     public void setAmount(int amount) {
         this.amount = amount;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {

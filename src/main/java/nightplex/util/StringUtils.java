@@ -19,4 +19,10 @@ public class StringUtils {
         newName.toLowerCase();
         return newName;
     }
+
+    public static String transferIntToStringTime(int time) {
+        int minutes = time / 60;
+        int seconds = time % 60;
+        return minutes + " minutes " + seconds + " seconds";
+    }
 }

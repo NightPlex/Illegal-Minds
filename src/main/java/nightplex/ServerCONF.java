@@ -10,6 +10,8 @@ public class ServerCONF {
 	public final static int EXP_MULTIPLIER = 10;
 	public final static int MONEY_PER_DRINK_MULTIPLIER = 50;
 	public final static int REPUTATION_PER_DRINK_MULTIPLIER = 50;
+	public final static int DRINK_UPDATE_TIME = 1000;
+
 
 
 

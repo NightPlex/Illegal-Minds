@@ -3,7 +3,6 @@ package nightplex.services.skills.barkeeping;
 import nightplex.ServerCONF;
 import nightplex.model.Account;
 import nightplex.model.template.skills.barkeeping.DrinkData;
-import nightplex.model.template.skills.barkeeping.DrinkSelected;
 import nightplex.model.template.skills.barkeeping.Material;
 import nightplex.services.GeneralService;
 import nightplex.services.account.AccountInformationService;
@@ -13,6 +12,7 @@ import nightplex.services.skills.barkeeping.logic.ReadyDrinks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -77,6 +77,32 @@ public class BarKeepingServiceImpl implements BarKeepingService {
             notificationService.addErrorMessage("Not enough ingredient", "You don't have enough ingredients: " + account.getBarkeeping().getStorageCapacity());
             return false;
         }
+    }
+
+    @Override
+    public List<DrinkData> getAllDrinks() {
+        List<DrinkData> allDrinks = new LinkedList<>();
+        for (int id : generalService.getDrinks().keySet()) {
+            if(id == 1337) continue;
+            allDrinks.add(generalService.getDrink(id));
+        }
+        return allDrinks;
+    }
+
+    @Override
+    public List<Material> getAllMaterial() {
+        return generalService.getMaterials();
+    }
+
+    @Override
+    public List<Material> getPlayersMaterial() {
+        Account account = accountInformationService.getCurrentAccount();
+        List<Material> playersDrink = new LinkedList<>();
+        Map<String, Integer> drinkMap = account.getBarkeeping().getIngredients();
+        for(String name : drinkMap.keySet()) {
+            playersDrink.add(new Material(name, drinkMap.get(name)));
+        }
+        return playersDrink;
     }
 
     @Override

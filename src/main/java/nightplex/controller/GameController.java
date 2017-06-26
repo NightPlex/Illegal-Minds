@@ -4,13 +4,9 @@ import nightplex.model.Account;
 import nightplex.services.account.AccountInformationService;
 import nightplex.services.notification.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import nightplex.services.repository.AccountRepository;
 
 
 /*
@@ -42,7 +38,6 @@ public class GameController {
                 notificationService.addErrorMessage("Lack of drinks", "Close bar or make more drinks, otherwise reputation will fall!");
             }
         }
-
         return "game";
 
     }

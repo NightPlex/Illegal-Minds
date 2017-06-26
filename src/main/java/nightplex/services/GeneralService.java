@@ -3,6 +3,7 @@ package nightplex.services;
 
 import nightplex.ServerCONF;
 import nightplex.model.template.skills.barkeeping.DrinkData;
+import nightplex.model.template.skills.barkeeping.Material;
 import nightplex.util.json.JsonDrinkDataParser;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +18,11 @@ import java.util.Map;
 public class GeneralService {
     private Map<Integer, DrinkData> drinks;
 
+    private List<Material> materials;
+
     public GeneralService() {
         populateDrinks();
+        populateMaterials();
     }
 
     /**
@@ -38,6 +42,11 @@ public class GeneralService {
 
     }
 
+    private void populateMaterials() {
+        materials = JsonDrinkDataParser.getMaterials();
+    }
+
+
     public DrinkData getDrink(int id) {
         DrinkData drinkData = drinks.get(id);
         if(drinkData != null) {
@@ -48,5 +57,13 @@ public class GeneralService {
 
     public Map<Integer, DrinkData> getDrinks() {
         return drinks;
+    }
+
+    public List<Material> getMaterials() {
+        return materials;
+    }
+
+    public void setMaterials(List<Material> materials) {
+        this.materials = materials;
     }
 }

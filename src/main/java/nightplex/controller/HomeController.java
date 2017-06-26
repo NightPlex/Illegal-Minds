@@ -1,10 +1,14 @@
 package nightplex.controller;
 
+import nightplex.model.Account;
 import nightplex.model.template.RegisterForm;
 import nightplex.services.account.AccountInformationService;
 import nightplex.services.notification.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,7 +31,25 @@ public class HomeController {
     private AccountInformationService accountInformationService;
 
     @RequestMapping("/")
-    public String landingPage(RegisterForm registerForm) {
+    public String landingPage(RegisterForm registerForm, Model model) {
+
+        //If user is already logged in cannot see the main page unless logs out.
+        if(SecurityContextHolder.getContext().getAuthentication() != null &&
+                SecurityContextHolder.getContext().getAuthentication().isAuthenticated() &&
+                //when Anonymous Authentication is enabled
+                !(SecurityContextHolder.getContext().getAuthentication()
+                        instanceof AnonymousAuthenticationToken) ) {
+            Account account = accountInformationService.getCurrentAccount();
+
+            model.addAttribute("userAccount", account);
+
+            if (!account.getBarkeeping().isBarIsClosed()) {
+                if (account.getBarkeeping().getDrinks() <= 0) {
+                    nService.addErrorMessage("Lack of drinks", "Close bar or make more drinks, otherwise reputation will fall!");
+                }
+            }
+            return "game";
+        }
 
         return "index";
 

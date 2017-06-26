@@ -22,6 +22,9 @@
                 </div>
             </div>
             <div class="panel-body">
+                <div class="text-left">
+                    <h4>Next customers come in: <span th:text="${nextCustomers}"></span></h4>
+                </div>
                 <div class="text-center m-b-md">
                     <h3>Welcome to the bar!</h3>
                     <h4>Your bar reputation: <b th:text="${userAccount.getBarkeeping().getReputation()}"></b></h4>

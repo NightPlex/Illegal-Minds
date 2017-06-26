@@ -2,7 +2,6 @@ package nightplex.controller;
 
 import nightplex.model.Account;
 import nightplex.model.template.bank.ReturnInteger;
-import nightplex.model.template.skills.barkeeping.DrinkSelected;
 import nightplex.services.account.AccountInformationService;
 import nightplex.services.account.bank.BankService;
 import org.springframework.beans.factory.annotation.Autowired;
