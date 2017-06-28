@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <!--/*@thymesVar id="userAccount" type="nightplex.model.Account"*/-->
-<!--/*@thymesVar id="drink" type="nightplex.model.template.skills.barkeeping.DrinkData"*/-->
+<!--/*@thymesVar id="playerDrink" type="nightplex.model.template.skills.barkeeping.DrinkData"*/-->
 <head th:replace="game :: site-head"></head>
 
 <body>
@@ -59,9 +59,9 @@
                 </div>
                 <br/>
                 <br/>
-                <div class="text-center m-b-md">
+                <div class="text-center m-b-md" th:if="${not #lists.isEmpty(playersMaterial)}">
                     <h5>Your raw material statistics: </h5>
-                    <div class="table-responsive" style="width: 50%; text-align: center">
+                    <div class="table-responsive" style="text-align: center">
                         <table class="table">
                             <thead>
                             <tr>
@@ -72,7 +72,26 @@
                             <tbody>
                             <tr th:each="rawMaterial : ${playersMaterial}">
                                 <td th:text="${rawMaterial.amount}"></td>
-                                <td th:text="${rawMaterial.name}"></td>
+                                <td th:text="${T(nightplex.util.StringUtils).convertFromIdToName(rawMaterial.name)}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="text-center m-b-md" th:if="${not #lists.isEmpty(playersDrinks)}">
+                    <h5>Your ready made drinks: </h5>
+                    <div class="table-responsive" style="text-align: center">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th style="text-align: center">Quantity</th>
+                                <th style="text-align: center">Drink Name</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="playerDrink : ${playersDrinks}">
+                                <td th:text="${playerDrink.getAmount()}"></td>
+                                <td th:text="${playerDrink.getDrinkName()}"></td>
                             </tr>
                             </tbody>
                         </table>

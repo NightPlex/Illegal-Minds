@@ -55,6 +55,11 @@ public class BarKeepingServiceImpl implements BarKeepingService {
     @Override
     public boolean buyRawMaterial(int amount, String ingredient) {
 
+        if(amount <= 0) {
+            notificationService.addErrorMessage("Error", "Invalid amount, must be more than 0");
+            return false;
+        }
+
         Account account = accountInformationService.getCurrentAccount();
 
         String[] response = DrinkTasks.addRawMaterial(account, generalService.getMaterial(ingredient), amount);
@@ -105,6 +110,19 @@ public class BarKeepingServiceImpl implements BarKeepingService {
             playersDrink.add(new Material(name, drinkMap.get(name)));
         }
         return playersDrink;
+    }
+
+    @Override
+    public List<DrinkData> getAllPlayerDrinks() {
+        Account account = accountInformationService.getCurrentAccount();
+        List<DrinkData> playerDrinks = new LinkedList<>();
+        Map<Integer, Integer> readyDrinks = account.getBarkeeping().getReadyDrinks();
+        for(int id : readyDrinks.keySet()) {
+            DrinkData drinkToAdd = generalService.getDrink(id);
+            drinkToAdd.setAmount(readyDrinks.get(id));
+            playerDrinks.add(drinkToAdd);
+        }
+        return playerDrinks;
     }
 
     @Override
@@ -174,7 +192,6 @@ public class BarKeepingServiceImpl implements BarKeepingService {
                     account.getBarkeeping().removeDrinkFromStorage(drinkData.getId(), readyDrinks.get(integer));
                     sellAmount -= readyDrinks.get(integer);
                 }
-
             }
         }
         account.getBarkeeping().removeReputation(sellAmount);

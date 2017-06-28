@@ -12,6 +12,15 @@ public class DrinkData {
     private int experience;
     private int level;
     private List<Material> material;
+    private int amount;
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
 
     public DrinkData() {
     }

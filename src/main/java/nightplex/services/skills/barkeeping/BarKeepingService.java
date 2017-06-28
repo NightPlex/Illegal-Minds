@@ -16,6 +16,7 @@ public interface BarKeepingService {
 	List<DrinkData> getAllDrinks();
 	List<Material> getAllMaterial();
 	List<Material> getPlayersMaterial();
+	List<DrinkData> getAllPlayerDrinks();
 
 	boolean buyBar();
 	

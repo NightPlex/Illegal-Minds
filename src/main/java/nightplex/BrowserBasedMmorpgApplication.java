@@ -27,7 +27,7 @@ public class BrowserBasedMmorpgApplication {
     public CommandLineRunner studentDemo(AccountRepository repo) {
         return (args) -> {
 
-            UserData d = new UserData(56, 0, 555, 277, 2666);
+            UserData d = new UserData(56, 5000, 555, 277, 2666);
             Barkeeping b = new Barkeeping(1, 0, 5000, false, false, 30000);
 
             Account l = new Account("steven", "test", "test@test.com", "USER", d, b);

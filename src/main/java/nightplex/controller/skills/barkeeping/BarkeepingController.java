@@ -66,6 +66,7 @@ public class BarkeepingController {
         model.addAttribute("selectedMaterial" , new Material());
         model.addAttribute("rawMaterials", barKeepingService.getAllMaterial());
         model.addAttribute("playersMaterial", barKeepingService.getPlayersMaterial());
+        model.addAttribute("playersDrinks", barKeepingService.getAllPlayerDrinks());
         return "game/skills/barkeeping/office";
     }
 

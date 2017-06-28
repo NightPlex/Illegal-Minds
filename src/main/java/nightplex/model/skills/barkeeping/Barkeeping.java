@@ -140,7 +140,7 @@ public class Barkeeping extends Skill {
     public String toString() {
         return "Barkeeping [id=" + id + ", drinks=" + drinks + ", barkeepingLevel=" + ", reputation="
                 + reputation + ", hasBoughtBar=" + hasBoughtBar + ", barIsClosed=" + barIsClosed + ", storageCapacity="
-                + storageCapacity + ", barStorage=" + ", kitchenStorage="  + "]";
+                + storageCapacity + ", barStorage=" + ", kitchenStorage=" + "]";
     }
 
     @Override
@@ -154,7 +154,7 @@ public class Barkeeping extends Skill {
     }
 
     public void addIngredient(String ingredient, int amount) {
-        if(ingredients.get(ingredient) != null) {
+        if (ingredients.get(ingredient) != null) {
             ingredients.put(ingredient, ingredients.get(ingredient) + amount);
         } else {
             ingredients.put(ingredient, amount);
@@ -162,12 +162,16 @@ public class Barkeeping extends Skill {
     }
 
     /**
-     *
      * Add ingredient to hashmap.
-     * */
+     */
     public boolean removeIngredient(String ingredient, int amount) {
-        if(ingredients.get(ingredient) == null || ingredients.get(ingredient) - amount < 0) {
+        Integer amountToRemove = ingredients.get(ingredient);
+        if (amountToRemove == null || amountToRemove - amount < 0) {
             return false;
+        }
+        if (amountToRemove - amount == 0) {
+            ingredients.remove(ingredient);
+            return true;
         }
         ingredients.put(ingredient, ingredients.get(ingredient) - amount);
         return true;
@@ -176,24 +180,34 @@ public class Barkeeping extends Skill {
     //Check storage amount
     public int storageAmount() {
         int amount = 0;
-        for(String ingredient : ingredients.keySet()) {
+        for (String ingredient : ingredients.keySet()) {
             amount += ingredients.get(ingredient);
         }
         return amount;
     }
 
     public void addDrinkToStorage(int id, int amount) {
-        drinks +=amount;
-        if(readyDrinks.get(id) != null) {
+        drinks += amount;
+        if (readyDrinks.get(id) != null) {
             readyDrinks.put(id, amount + readyDrinks.get(id));
             return;
         }
         readyDrinks.put(id, amount);
     }
+
     public boolean removeDrinkFromStorage(int id, int amount) {
-        drinks -=amount;
-        if(readyDrinks.get(id) != null && readyDrinks.get(id) - amount >=0) {
-            readyDrinks.put(id, amount - readyDrinks.get(id));
+        Integer amountToRmove = readyDrinks.get(id);
+        if(amountToRmove == null) {
+            return false;
+        }
+        if (amountToRmove - amount == 0) {
+            readyDrinks.remove(id);
+            drinks -= amount;
+            return true;
+        }
+        if (amountToRmove - amount > 0) {
+            readyDrinks.put(id, amountToRmove - amount);
+            drinks -= amount;
             return true;
         }
         return false;
@@ -204,7 +218,7 @@ public class Barkeeping extends Skill {
     }
 
     public void removeReputation(int amount) {
-        if(reputation - amount < 5000) {
+        if (reputation - amount < 5000) {
             return;
         }
         reputation -= amount;

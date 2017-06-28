@@ -38,3 +38,8 @@ Multiple new front end features
 Buying ingredients
 Casino start
 %Remember that ifStorageRoom is unfinished%
+Barkeeping put on pause: basically everything is set up in base (just add content)
+
+28.06
+Bug fixes, null fixes and so on
+Starting to work on cooking skill (restaraunt)

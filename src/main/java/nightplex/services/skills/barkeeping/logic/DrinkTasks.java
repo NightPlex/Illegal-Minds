@@ -40,7 +40,6 @@ public class DrinkTasks {
         for (Material material : drinkData.getMaterial()) {
             if (!removeRawMaterial(account, material.getName(), material.getAmount())) {
               return new String[]{"Lack of material", "You are missing " + material.getAmount() + "x " + StringUtils.convertFromIdToName(material.getName())};
-
             }
         }
         account.getBarkeeping().addExp(drinkData.getExperience());

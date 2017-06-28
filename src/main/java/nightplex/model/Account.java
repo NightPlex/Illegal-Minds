@@ -2,6 +2,7 @@ package nightplex.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import nightplex.model.skills.barkeeping.Barkeeping;
+import nightplex.model.skills.cooking.Cooking;
 
 import javax.persistence.*;
 
@@ -49,6 +50,17 @@ public class Account {
     @JsonIgnore
     private Barkeeping barkeeping; // BarKeeping skill related data.
 
+    @ManyToOne(cascade = CascadeType.ALL) // Simply declaring that children table to be made also,  otherwise error.
+    @JsonIgnore
+    private Cooking cooking;
+
+    public Cooking getCooking() {
+        return cooking;
+    }
+
+    public void setCooking(Cooking cooking) {
+        this.cooking = cooking;
+    }
 
     public Barkeeping getBarkeeping() {
         return barkeeping;
@@ -90,7 +102,7 @@ public class Account {
 
     }
 
-    public Account(String username, String password, String email, String role, UserData userData, Barkeeping barkeeping) {
+    public Account(String username, String password, String email, String role, UserData userData, Barkeeping barkeeping, Cooking cooking) {
         super();
         this.username = username;
         this.userData = userData;
@@ -98,6 +110,7 @@ public class Account {
         this.password = password;
         this.email = email;
         this.role = role;
+        this.cooking = cooking;
     }
 
     public Account() {
