@@ -101,4 +101,10 @@ public class UserData {
         setMoney(getMoney() + amount);
     }
 
+    public void removeMoney(int amount) {
+        if(getMoney() - amount >= 0) {
+            setMoney(getMoney()-amount);
+        }
+    }
+
 }

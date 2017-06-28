@@ -8,16 +8,30 @@ public class Material {
 
     private int amount;
 
+    private int price;
+
     public Material() {
     }
 
+    public Material(String name, int amount, int price) {
+        this.name = name;
+        this.amount = amount;
+        this.price = price;
+    }
     public Material(String name, int amount) {
         this.name = name;
         this.amount = amount;
     }
-
     public Material(String name) {
         this.name = name;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     public int getAmount() {

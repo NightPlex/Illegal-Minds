@@ -28,7 +28,8 @@
                 <div class="text-center m-b-md">
                     <h3>Welcome to the bar!</h3>
                     <h4>Your bar reputation: <b th:text="${userAccount.getBarkeeping().getReputation()}"></b></h4>
-                    <h5>Your bar is: <span th:if="${userAccount.barkeeping.barIsClosed}">Closed!</span><span th:if="${!userAccount.barkeeping.barIsClosed}">Open!</span></h5>
+                    <h5>Your bar is: <span th:if="${userAccount.barkeeping.barIsClosed}">Closed!</span><span
+                            th:if="${!userAccount.barkeeping.barIsClosed}">Open!</span></h5>
                     <form th:action="@{/tavern/toggle}" method="post">
                         <button type="submit" class="btn btn-sm btn-default" data-toggle="tooltip" data-placement="left"
                                 title="Clients come only if bar is open!"><span
@@ -38,7 +39,8 @@
                     </form>
                     <br/>
                     <small>
-                        Keep up your bar reputation by making drinks. Remember if you bat is closed it doesn't affect drinks or clients!
+                        Keep up your bar reputation by making drinks. Remember if you bat is closed it doesn't affect
+                        drinks or clients!
                     </small>
                 </div>
 
@@ -48,12 +50,16 @@
                                 title="Tooltip on top">Kitchen
                         </button>
                     </form>
-                    <button type="button" class="btn btn-sm btn-default" data-toggle="tooltip" data-placement="bottom"
-                            title="Tooltip on bottom">Tooltip on bottom
+                    <button th:href="@{/tavern/office}" type="button" class="btn btn-sm btn-default"
+                            data-toggle="tooltip" data-placement="bottom"
+                            title="Tooltip on bottom">Office
                     </button>
-                    <button type="button" class="btn btn-sm btn-default" data-toggle="tooltip" data-placement="right"
-                            title="Tooltip on right">Tooltip on right
-                    </button>
+                    <form th:action="@{/tavern/office}" method="post">
+                        <button type="submit" class="btn btn-sm btn-default" data-toggle="tooltip"
+                                data-placement="right"
+                                title="Tooltip on right">Office
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

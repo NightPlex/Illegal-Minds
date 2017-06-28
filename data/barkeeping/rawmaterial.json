@@ -1,31 +1,24 @@
 {
   "data": [
     {
-      "name": "water"
+      "name": "water",
+      "price" : 10
     },
     {
-      "name": "raw_milk"
+      "name": "raw_milk",
+      "price" : 20
     },
     {
-      "name": "tea_tree_leaves"
+      "name": "tea_tree_leaves",
+      "price" : 30
     },
     {
-      "name": "coffee_beans"
+      "name": "coffee_beans",
+      "price" : 40
     },
     {
-      "name": "tea_tree_blossoms"
-    },
-    {
-      "name": "water"
-    },
-    {
-      "name": "water"
-    },
-    {
-      "name": "water"
-    },
-    {
-      "name": "water"
+      "name": "tea_tree_blossoms",
+      "price" : 50
     }
   ]
 }

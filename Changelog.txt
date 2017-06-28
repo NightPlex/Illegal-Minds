@@ -32,3 +32,9 @@ Added bunch of the logic
 25.06
 Added async barkeeping logic
 Earn money by making drinks
+
+27.06
+Multiple new front end features
+Buying ingredients
+Casino start
+%Remember that ifStorageRoom is unfinished%

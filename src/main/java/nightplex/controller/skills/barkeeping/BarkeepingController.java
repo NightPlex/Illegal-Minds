@@ -3,6 +3,7 @@ package nightplex.controller.skills.barkeeping;
 import nightplex.ServerCONF;
 import nightplex.model.Account;
 import nightplex.model.template.skills.barkeeping.DrinkSelected;
+import nightplex.model.template.skills.barkeeping.Material;
 import nightplex.services.account.AccountInformationService;
 import nightplex.services.account.AccountScheduledTasks;
 import nightplex.services.skills.barkeeping.BarKeepingService;
@@ -62,14 +63,20 @@ public class BarkeepingController {
     }
     @RequestMapping(value = "/office")
     public String barkeepingOffice(Model model) {
+        model.addAttribute("selectedMaterial" , new Material());
         model.addAttribute("rawMaterials", barKeepingService.getAllMaterial());
-        model.addAttribute("playersMaterial", barKeepingService.getAllMaterial());
+        model.addAttribute("playersMaterial", barKeepingService.getPlayersMaterial());
         return "game/skills/barkeeping/office";
+    }
+
+    @RequestMapping(value = "/office/buy", method = RequestMethod.POST)
+    public String buyRawMaterial(@ModelAttribute("selectedMaterial") Material material, Model model) {
+        barKeepingService.buyRawMaterial(material.getAmount(), material.getName());
+        return "redirect:/tavern/office";
     }
 
     @RequestMapping(value = "/makedrink", method = RequestMethod.POST)
     public String makeDrink(@ModelAttribute("selectedDrink") DrinkSelected drinkSelected, Model model) {
-        barKeepingService.buyRawMaterial(100, "water");
         barKeepingService.makeDrink(drinkSelected.getDrinkId());
         model.addAttribute("drinks", barKeepingService.getAllDrinks());
         model.addAttribute("selectedDrink", new DrinkSelected(drinkSelected.getDrinkId()));

@@ -57,11 +57,13 @@ public class BarKeepingServiceImpl implements BarKeepingService {
 
         Account account = accountInformationService.getCurrentAccount();
 
-        if (DrinkTasks.addRawMaterial(account, ingredient, amount)) {
+        String[] response = DrinkTasks.addRawMaterial(account, generalService.getMaterial(ingredient), amount);
+
+        if (response == null) {
             accountInformationService.saveAccount(account);
             return true;
         } else {
-            notificationService.addErrorMessage("Not enough room", "You cannot store more than: " + account.getBarkeeping().getStorageCapacity());
+            notificationService.addErrorMessage(response[0], response[1]);
             return false;
         }
     }

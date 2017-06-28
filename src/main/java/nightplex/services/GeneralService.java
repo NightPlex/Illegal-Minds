@@ -18,7 +18,7 @@ import java.util.Map;
 public class GeneralService {
     private Map<Integer, DrinkData> drinks;
 
-    private List<Material> materials;
+    private Map<String, Material> materials;
 
     public GeneralService() {
         populateDrinks();
@@ -43,7 +43,13 @@ public class GeneralService {
     }
 
     private void populateMaterials() {
-        materials = JsonDrinkDataParser.getMaterials();
+        materials = new HashMap<>();
+        List<Material> materialsList = JsonDrinkDataParser.getMaterials();
+        if(materialsList != null) {
+            for(Material material : materialsList) {
+                materials.put(material.getName(), material);
+            }
+        }
     }
 
 
@@ -55,15 +61,16 @@ public class GeneralService {
         return null;
     }
 
+    public Material getMaterial(String name) {
+        return materials.get(name);
+    }
+
     public Map<Integer, DrinkData> getDrinks() {
         return drinks;
     }
 
     public List<Material> getMaterials() {
-        return materials;
+        return JsonDrinkDataParser.getMaterials();
     }
 
-    public void setMaterials(List<Material> materials) {
-        this.materials = materials;
-    }
 }

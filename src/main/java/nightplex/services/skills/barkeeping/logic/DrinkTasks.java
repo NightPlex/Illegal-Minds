@@ -50,9 +50,18 @@ public class DrinkTasks {
 
     //Change raw material
     //Ignore the design here, it's just dummy change.
-    public static boolean addRawMaterial(Account account, String ingredient, int amount) {
-        account.getBarkeeping().addIngredient(ingredient, amount);
-        return true;
+    public static String[] addRawMaterial(Account account, Material material, int amount) {
+        if(hasRoom(account, amount)) {
+            int totalAmount = material.getPrice() * amount;
+            System.out.println(totalAmount);
+            if(account.getUserData().getMoney() - totalAmount >= 0) {
+                account.getBarkeeping().addIngredient(material.getName(), amount);
+                account.getUserData().removeMoney(totalAmount);
+                return null;
+            }
+            return new String[]{"Error", "You do not have enough money"};
+        }
+        return new String[]{"Error", "Not enough storage room for these products"};
     }
 
     public static boolean removeRawMaterial(Account account, String ingredient, int amount) {
