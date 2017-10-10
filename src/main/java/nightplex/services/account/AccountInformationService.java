@@ -3,6 +3,7 @@ package nightplex.services.account;
 import nightplex.model.Account;
 import nightplex.model.UserData;
 import nightplex.model.skills.barkeeping.Barkeeping;
+import nightplex.model.skills.cooking.Cooking;
 import nightplex.services.repository.AccountRepository;
 import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,7 @@ public class AccountInformationService {
     public void registerNewAccount(String username, String password, String email) {
         UserData d = new UserData(0, 10000, 0, 0, 0);
         Barkeeping b = new Barkeeping(1, 0, 5000, false, true, 30000);
-        Account l = new Account(username, password, email, "USER", d, b);
+        Account l = new Account(username, password, email, "USER", d, b, new Cooking());
         accountRepository.save(l);
     }
 }

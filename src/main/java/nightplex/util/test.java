@@ -1,6 +1,6 @@
 package nightplex.util;
 
-import java.util.Map;
+import nightplex.applogic.CollectiveReward;
 
 /**
  * Created by steven.tihomirov on 14.6.2017.
@@ -8,13 +8,13 @@ import java.util.Map;
 public class test {
     public static void main(String args[]) {
 
-        System.out.println(StringUtils.transferIntToStringTime(187));
+        print();
 
     }
 
-    public static void print(Map<String, Integer> d) {
-        for(String l : d.keySet()) {
-            System.out.println("String: " + l + " integer: " + d.get(l));
-        }
+    public static void print() {
+        CollectiveReward collectiveReward = CollectiveReward.getInstance();
+        collectiveReward.addReward(34);
+        System.out.println(collectiveReward.getRewardAmount());
     }
 }

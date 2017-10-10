@@ -35,9 +35,7 @@ public class ExperienceHandler {
         double total = 0;
 
         for (int i = 1; i < level; i++) {
-
             total += Math.floor(i + 300 * Math.pow(2, i / 7.0));
-
         }
 
         return (int)Math.floor(total / 4);

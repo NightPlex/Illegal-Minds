@@ -8,6 +8,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
+import java.util.Objects;
 
 /**
  * Created by NightPlex
@@ -47,16 +48,16 @@ public class AccountScheduledTasks {
 
     @Scheduled(fixedRate = ServerCONF.DRINK_UPDATE_TIME * 1000)
     public void updateDrinks() {
-        //Check and calculate drinks and profit.
-        System.out.println("STARTING DRINK UPDATE");
-        for(Account account : accountInformationService.getAll()) {
-            if(!account.getBarkeeping().isBarIsClosed()) {
-                barKeepingService.sellDrinks(account);
-                accountInformationService.saveAccount(account);
-            }
-        }
-
+        accountInformationService.getAll().stream()
+                .filter(Objects::nonNull)
+                .forEach(this::updateDrinks);
         nextCustomers = 0;
+    }
+    private void updateDrinks(Account account) {
+        if(!account.getBarkeeping().isBarIsClosed()) {
+            barKeepingService.sellDrinks(account);
+            accountInformationService.saveAccount(account);
+        }
     }
 
     public int getNextCustomers() {
