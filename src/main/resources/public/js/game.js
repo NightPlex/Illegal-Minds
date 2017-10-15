@@ -18,3 +18,17 @@ function makeDrink() {
             alert( "finished" );
         });
 }
+
+$(document).ready(function () {
+   $("button").click(function () {
+
+       var btn = $(this);
+
+
+      btn.prop("disabled", true);
+
+      setTimeout(function () {
+         btn.prop("disabled", false);
+      }, 1000);
+   });
+});

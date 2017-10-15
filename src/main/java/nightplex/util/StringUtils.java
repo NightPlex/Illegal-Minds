@@ -15,9 +15,7 @@ public class StringUtils {
     }
 
     public static String convertFromNameToId(String name) {
-        String newName = name.replace(" ", "_");
-        newName.toLowerCase();
-        return newName;
+        return name.replace(" ", "_").toLowerCase();
     }
 
     public static String transferIntToStringTime(int time) {
