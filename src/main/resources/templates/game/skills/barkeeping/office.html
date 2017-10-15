@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <!--/*@thymesVar id="userAccount" type="nightplex.model.Account"*/-->
-<!--/*@thymesVar id="playerDrink" type="nightplex.model.template.skills.barkeeping.DrinkData"*/-->
-<head th:replace="game :: site-head"></head>
+<!--/*@thymesVar id="drink" type="nightplex.model.template.skills.barkeeping.DrinkData"*/-->
+<head th:replace="template/head :: site-head"></head>
 
 <body>
 <!-- Here I use template to keep code more clean -->
-<div th:replace="game :: site-header"></div>
-<div th:replace="game :: site-left-bar"></div>
+<div th:replace="template/header :: site-header"></div>
+<div th:replace="template/leftbar :: site-left-bar"></div>
 
 <div id="wrapper">
-    <div th:replace="game :: site-menu"></div>
+    <div th:replace="template/gamemenu :: site-menu"></div>
+
     <!-- Barkeeping header/links -->
 
     <div class="col-lg-12">
@@ -101,7 +102,7 @@
         </div>
     </div>
 </div>
-<div th:replace="game :: site-footer"></div>
+<div th:replace="template/footer :: site-footer"></div>
 
 </body>
 </html>

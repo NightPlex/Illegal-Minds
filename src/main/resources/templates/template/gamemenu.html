@@ -1,0 +1,52 @@
+<div th:fragment="site-menu">
+    <div class="normalheader transition animated fadeIn">
+        <div class="hpanel">
+
+            <div class="panel-body">
+                <a class="small-header-action" href="">
+                    <div class="clip-header">
+                        <i class="fa fa-arrow-up"></i>
+                    </div>
+
+                </a>
+
+                <div class="col-md-4">
+
+                    <ul class="list-group">
+                        <a href="index.html" th:href="@{/bank/}">
+                            <li class="list-group-item">Bank</li>
+                        </a>
+                        <li class="list-group-item">Sports</li>
+                        <a href="#" th:href="@{/tavern/}">
+                            <li
+                                    class="list-group-item">Barkeeping
+                            </li>
+                        </a>
+                        <li class="list-group-item">Casino</li>
+                    </ul>
+
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-group">
+                        <li class="list-group-item">Your house</li>
+                        <li class="list-group-item">Army</li>
+                        <li class="list-group-item">Garden</li>
+                        <li class="list-group-item">Market</li>
+                    </ul>
+
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-group">
+                        <li class="list-group-item">Hospital</li>
+                        <li class="list-group-item">Port</li>
+                        <li class="list-group-item">Mine</li>
+                        <li class="list-group-item">Street</li>
+                    </ul>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
