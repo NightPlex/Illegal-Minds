@@ -3,6 +3,7 @@ package nightplex;
 import nightplex.model.Account;
 import nightplex.model.UserData;
 import nightplex.model.skills.barkeeping.Barkeeping;
+import nightplex.model.skills.cooking.Cooking;
 import nightplex.services.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -30,7 +31,7 @@ public class BrowserBasedMmorpgApplication {
             UserData d = new UserData(56, 5000, 555, 277, 2666);
             Barkeeping b = new Barkeeping(1, 0, 5000, false, false, 30000);
 
-            Account l = new Account("steven", "test", "test@test.com", "USER", d, b);
+            Account l = new Account("steven", "test", "test@test.com", "USER", d, b, new Cooking());
 
             repo.save(l);
 
