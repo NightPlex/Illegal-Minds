@@ -6,6 +6,7 @@ import nightplex.services.account.AccountInformationService;
 import nightplex.services.account.bank.BankService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,7 +38,7 @@ public class BankController {
         return new ReturnInteger();
     }
 
-    @RequestMapping("/")
+    @GetMapping
     public String getBankPage() {
         return "game/bank/bank";
     }

@@ -1,7 +1,10 @@
 # Spring MVC browser game. IllegalMinds
 
 Browser game that I have been considering to develope for years. Recently after getting into Spring framework I 
-started to build it from scartch. At this moment project has landing page with register and login. After login the game view, however game functionality not yet added. Project has security implemented and custom security users.
+started to build it from scartch. Main idea is to collect fame and money and eventually compete with other players.
+
+## Changelog
+
 
 ## Getting Started
 
@@ -26,9 +29,6 @@ Go to IDE, export as WAR. (If JAR change in POM.xml)
 ## Built With
 
 * [Maven](https://maven.apache.org/) - Dependency Management
-
-
-
 
 
 ## Authors

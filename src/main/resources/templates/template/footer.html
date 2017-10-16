@@ -1,0 +1,71 @@
+<div th:fragment="site-footer">
+
+    <!-- Footer-->
+    <!--<footer class="footer">
+        <span class="pull-right"> Illegal Minds presents </span> NightPlex
+        productions 2016
+    </footer>-->
+
+    <!-- Vendor scripts -->
+    <script src="../public/vendor/jquery/jquery.min.js"
+            th:src="@{/vendor/jquery/jquery.min.js}"></script>
+    <script src="../public/vendor/jquery-ui/jquery-ui.min.js"
+            th:src="@{/vendor/jquery-ui/jquery-ui.min.js}"></script>
+    <script src="../public/vendor/slimScroll/jquery.slimscroll.min.js"
+            th:src="@{/vendor/slimScroll/jquery.slimscroll.min.js}"></script>
+    <script src="../public/vendor/bootstrap/js/bootstrap.min.js"
+            th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
+    <script src="../public/vendor/jquery-flot/jquery.flot.js"
+            th:src="@{/vendor/jquery-flot/jquery.flot.js}"></script>
+    <script src="../public/vendor/jquery-flot/jquery.flot.resize.js"
+            th:src="@{/vendor/jquery-flot/jquery.flot.resize.js}"></script>
+    <script src="../public/vendor/jquery-flot/jquery.flot.pie.js"
+            th:src="@{/vendor/jquery-flot/jquery.flot.pie.js}"></script>
+    <script src="../public/vendor/flot.curvedlines/curvedLines.js"
+            th:src="@{/vendor/flot.curvedlines/curvedLines.js}"></script>
+    <script src="../public/vendor/jquery.flot.spline/index.js"
+            th:src="@{/vendor/jquery.flot.spline/index.js}"></script>
+    <script src="../public/vendor/metisMenu/metisMenu.min.js"
+            th:src="@{/vendor/metisMenu/metisMenu.min.js}"></script>
+    <script src="../public/vendor/iCheck/icheck.min.js"
+            th:src="@{/vendor/iCheck/icheck.min.js}"></script>
+    <script src="../public/vendor/peity/jquery.peity.min.js"
+            th:src="@{/vendor/peity/jquery.peity.min.js}"></script>
+    <script src="../public/vendor/sparkline/index.js"
+            th:src="@{/vendor/sparkline/index.js}"></script>
+    <script src="../public/vendor/toastr/toastr.min.js"
+            th:src="@{/vendor/toastr/toastr.min.js}"></script>
+
+    <!-- App scripts -->
+    <script src="../public/js/homer.js" th:src="@{/js/homer.js}"></script>
+    <script src="../public/js/charts.js" th:src="@{/js/charts.js}"></script>
+    <script src="../public/js/game.js" th:src="@{/js/game.js}"></script>
+
+    <ul
+            th:with="notifyMessages=${session[T(nightplex.services.notification.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY]}"
+    >
+        <li th:remove="tag" th:each="msg : ${notifyMessages}">
+            <script th:inline="text">
+                $(document).ready(function () {
+                    toastr.options = {
+                        "debug": false,
+                        "newestOnTop": false,
+                        "positionClass": "toast-top-center",
+                        "closeButton": true,
+                        "toastClass": "animated fadeInDown",
+                    };
+
+                    function callMe() {
+                        toastr.[[${#strings.toLowerCase(msg.type)}]]('[[${msg.title}]]' + ' - ' + '[[${msg.text}]]');
+                    }
+                    ;
+                    callMe();
+                });
+            </script>
+        </li>
+        <span th:if="${notifyMessages}" th:remove="all"
+              th:text="${session.remove(
+          T(nightplex.services.notification.NotificationServiceImpl).NOTIFY_MSG_SESSION_KEY)}"></span>
+
+    </ul>
+</div>
