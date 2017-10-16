@@ -1,7 +1,8 @@
-package nightplex.services.account;
+package nightplex.services.scheduling;
 
 import nightplex.ServerCONF;
 import nightplex.model.Account;
+import nightplex.services.account.AccountInformationService;
 import nightplex.services.skills.barkeeping.BarKeepingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;

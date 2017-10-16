@@ -5,7 +5,7 @@ import nightplex.model.Account;
 import nightplex.model.template.skills.barkeeping.DrinkSelected;
 import nightplex.model.template.skills.barkeeping.Material;
 import nightplex.services.account.AccountInformationService;
-import nightplex.services.account.AccountScheduledTasks;
+import nightplex.services.scheduling.AccountScheduledTasks;
 import nightplex.services.skills.barkeeping.BarKeepingService;
 import nightplex.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -4,21 +4,22 @@ import nightplex.model.Account;
 import nightplex.model.template.skills.barkeeping.DrinkData;
 import nightplex.model.template.skills.barkeeping.Material;
 import nightplex.util.StringUtils;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by steven.tihomirov on 16.6.2017.
  * <p>
  * Generate some dummy method
  */
-public class DrinkTasks {
+@Service
+public class DrinkTaskService {
 
-
-    private static boolean hasRoom(Account account, int amount) {
+    private boolean hasRoom(Account account, int amount) {
         //Storage capacity check here
         return true;
     }
 
-    private static boolean hasLevel(Account account, int level) {
+    private boolean hasLevel(Account account, int level) {
         if (account.getBarkeeping().getLevel() >= level) {
             return true;
         } else {
@@ -27,11 +28,11 @@ public class DrinkTasks {
     }
 
     /**
-     *
-     * Returns array of string with the title being at 0 position and text at  1
-     *
-     * */
-    public static String[] makeDrink(DrinkData drinkData, Account account) {
+     * @param drinkData
+     * @param account
+     * @return Returns array of string with the title being at 0 position and text at  1
+     */
+    public String[] makeDrink(DrinkData drinkData, Account account) {
         //Has level required?
         if (!hasLevel(account, drinkData.getLevel())) {
             return new String[]{"Low level", "You need at least barkeeping level of " + drinkData.getLevel() + " to make this drink"};
@@ -47,9 +48,14 @@ public class DrinkTasks {
         return null;
     }
 
-    //Change raw material
-    //Ignore the design here, it's just dummy change.
-    public static String[] addRawMaterial(Account account, Material material, int amount) {
+    /**
+     *
+     * @param account
+     * @param material
+     * @param amount
+     * @return Returns array of string with the title being at 0 position and text at  1
+     */
+    public String[] addRawMaterial(Account account, Material material, int amount) {
         if(hasRoom(account, amount)) {
             int totalAmount = material.getPrice() * amount;
             System.out.println(totalAmount);
@@ -63,11 +69,18 @@ public class DrinkTasks {
         return new String[]{"Error", "Not enough storage room for these products"};
     }
 
-    public static boolean removeRawMaterial(Account account, String ingredient, int amount) {
+    /**
+     *
+     * @param account
+     * @param ingredient
+     * @param amount
+     * @return
+     */
+    public String[] removeRawMaterial(Account account, String ingredient, int amount) {
         if (account.getBarkeeping().removeIngredient(ingredient, amount)) {
-            return true;
+            return null;
         } else {
-            return false;
+            return new String[]{"Not enough ingredient", "You don't have enough ingredients: " + account.getBarkeeping().getStorageCapacity()};
         }
     }
 
