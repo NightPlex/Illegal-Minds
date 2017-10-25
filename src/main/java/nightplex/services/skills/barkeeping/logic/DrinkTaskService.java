@@ -3,7 +3,6 @@ package nightplex.services.skills.barkeeping.logic;
 import nightplex.model.Account;
 import nightplex.model.template.skills.barkeeping.DrinkData;
 import nightplex.model.template.skills.barkeeping.Material;
-import nightplex.util.StringUtils;
 import org.springframework.stereotype.Service;
 
 /**
@@ -39,9 +38,7 @@ public class DrinkTaskService {
         }
         //First check that there are ingredients
         for (Material material : drinkData.getMaterial()) {
-            if (!removeRawMaterial(account, material.getName(), material.getAmount())) {
-              return new String[]{"Lack of material", "You are missing " + material.getAmount() + "x " + StringUtils.convertFromIdToName(material.getName())};
-            }
+            return removeRawMaterial(account, material.getName(), material.getAmount());
         }
         account.getBarkeeping().addExp(drinkData.getExperience());
         account.getBarkeeping().addDrinkToStorage(drinkData.getId(), 1);

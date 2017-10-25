@@ -6,6 +6,7 @@ package nightplex.service.barkeeping.logic;
 
 import nightplex.model.Account;
 import nightplex.services.account.AccountInformationService;
+import nightplex.services.skills.barkeeping.BarKeepingService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
